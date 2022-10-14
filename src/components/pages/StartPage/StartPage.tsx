@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import PlayersPage from "../PlayersPage/PlayersPage";
 
 function StartPage() {
   return (
@@ -15,15 +14,14 @@ function StartPage() {
           Выберите количество игроков
         </h1>
         <select
+          defaultValue={1}
           name="selectNumberOfPlayers"
           className="w-fit mx-auto mb-4 mt-0 px-4 py-2 font-sans text-2xl font-bold rounded-lg bg-orange-100"
         >
-          <option value="value1" selected>
-            1
-          </option>
-          <option value="value2"> 2 </option>
-          <option value="value3"> 3 </option>
-          <option value="value4"> 4 </option>
+          <option value={1}>1</option>
+          <option value={2}> 2 </option>
+          <option value={3}> 3 </option>
+          <option value={4}> 4 </option>
         </select>
         <Link
           to="/PlayersPage"
@@ -31,8 +29,8 @@ function StartPage() {
         >
           Начать
         </Link>
-        <div className="fixed top-[60%] left-10 h-20 w-fit z-50">
-          <img src="./gray_cat.png" className="z-50"></img>
+        <div className="fixed top-[60%] left-10 h-20 w-fit z-0">
+          <img src="./gray_cat.png" className="z-0"></img>
         </div>
       </div>
     </>
