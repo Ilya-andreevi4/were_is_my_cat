@@ -13,19 +13,9 @@ function StartPage() {
         <h1 className="mx-auto mt-5 mb-0 text-4xl font-bold font-sans text-orange-100">
           Выберите количество игроков
         </h1>
-        <select
-          defaultValue={1}
-          name="selectNumberOfPlayers"
-          className="w-fit mx-auto mb-4 mt-0 px-4 py-2 font-sans text-2xl font-bold rounded-lg bg-orange-100"
-        >
-          <option value={1}>1</option>
-          <option value={2}> 2 </option>
-          <option value={3}> 3 </option>
-          <option value={4}> 4 </option>
-        </select>
         <Link
           to="/PlayersPage"
-          className="px-14 py-4 font-sans text-4xl bg-orange-500 text-white font-extrabold w-fit mx-auto mt-2 rounded-lg shadow-xl hover:bg-orange-600 hover:shadow-sm"
+          className="px-14 py-4 font-sans text-4xl bg-orange-500 text-white font-extrabold w-fit mx-auto mt-8 rounded-lg shadow-xl hover:bg-orange-600 hover:shadow-sm"
         >
           Начать
         </Link>

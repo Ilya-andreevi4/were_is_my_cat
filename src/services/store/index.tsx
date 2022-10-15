@@ -1,11 +1,17 @@
-import { configureStore } from '@reduxjs/toolkit'
-import { playersReducer } from './gameReducers/gameReducers'
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { setupListeners } from "@reduxjs/toolkit/query";
+import { playersReducer } from "./gameReducers/gameReducers";
+
+const rootReducer = combineReducers({
+  gameReducers: playersReducer,
+});
 
 const store = configureStore({
-  reducer:{
-    players: playersReducer,
-  },
-})
+  reducer: rootReducer,
 
-export default store
-export type RootState = ReturnType<typeof store.getState>
+});
+
+setupListeners(store.dispatch);
+
+export default store;
+export type RootState = ReturnType<typeof store.getState>;
