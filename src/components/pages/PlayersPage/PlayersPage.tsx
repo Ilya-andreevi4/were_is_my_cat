@@ -75,6 +75,7 @@ p.name=text;
         <ul className="List-none my-4 mx-auto ">
           {players.map((player: IPlayer, id: number) => {
             return (
+              // TODO В отдельный компонент.
               <li
                 key={id}
                 className="flex justify-center flex-row mx-auto my-4 text-center text-xl font-bold font-sans text-blue-700"
