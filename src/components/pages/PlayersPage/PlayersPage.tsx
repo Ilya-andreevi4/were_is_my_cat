@@ -29,7 +29,7 @@ export default function PlayersPage() {
         id: 0,
         name: "Игрок 1",
         avatar: "./setting.png",
-        turn: false,
+        turn: true,
         points: 0,
       });
     }
