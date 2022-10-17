@@ -3,25 +3,13 @@ import { Link } from "react-router-dom";
 import { useActions } from "../../../services/hooks/actions";
 import { useAppSelector } from "../../../services/hooks/redux";
 import { IPlayer } from "../../../services/models/IPlayer";
+import PlayerInput from "./PlayerInput";
 
 export default function PlayersPage() {
-  const { addPlayer, removePlayer, changePlayer } = useActions();
-  const { players } = useAppSelector((state) => state.gameReducers);
-  const [warning, setWarning] = useState<boolean>(false);
-  const [text, setText] = useState("");
-  const [activeText, setActiveText] = useState("");
 
-  const deletePlayer = (p: IPlayer) => {
-    removePlayer(p);
-  };
-  const handleChangePlayer = (
-    e: React.ChangeEvent<HTMLInputElement>,
-    p: IPlayer
-  ) => {
-    setText(e.target.value);
-p.name=text;
-    changePlayer(p);
-  };
+  const [warning, setWarning] = useState<boolean>(false);
+  const { addPlayer } = useActions();
+  const { players } = useAppSelector((state) => state.gameReducers);
 
   const addNewPlayer = () => {
     if (players.length === 6) {
@@ -46,9 +34,6 @@ p.name=text;
         points: 0,
       });
     }
-  };
-  const handleFocus = (p: IPlayer, e: React.ChangeEvent<HTMLInputElement>, id:number) => {
-
   };
 
   useEffect(() => {}, [warning, players]);
@@ -75,29 +60,13 @@ p.name=text;
         <ul className="List-none my-4 mx-auto ">
           {players.map((player: IPlayer, id: number) => {
             return (
-              // TODO В отдельный компонент.
-              <li
-                key={id}
-                className="flex justify-center flex-row mx-auto my-4 text-center text-xl font-bold font-sans text-blue-700"
-              >
-                <h2 className="mr-4 text-4xl">{player.id + 1}</h2>
-                <input
-                  type="text"
-                  id={JSON.stringify((player.id))}
-                  onFocus={(e) => handleFocus(player, e, player.id)}
-                  onChange={(e) => handleChangePlayer(e, player)}
-                  value={text}
-                  placeholder= {JSON.stringify("Игрок "+(player.id+1))}
-                  className="px-3 py-1 text-xl"
-                />
-                <button
-                  onClick={() => deletePlayer(player)}
-                  className="px-4 py-2 font-sans text-lg bg-red-500 text-white font-bold w-fit ml-4 rounded-lg shadow-xl hover:bg-red-600 hover:shadow-sm"
-                >
-                  Удалить
-                </button>
-              </li>
-            );
+    <li
+    key={id}
+    className="flex justify-center flex-row mx-auto my-4 text-center text-xl font-bold font-sans text-blue-700"
+  >
+              <PlayerInput p={player} />
+
+    </li> );
           })}
         </ul>
         <Link
