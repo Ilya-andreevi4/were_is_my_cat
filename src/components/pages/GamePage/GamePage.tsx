@@ -37,7 +37,7 @@ function GamePage() {
                 <img
                   src={!card.opened ? card.face : card.back}
                   alt="Карта кота"
-                  className="rounded-md shadow-lg hover:shadow-sm cursor-pointer"
+                  className="rounded-md shadow-lg hover:shadow-sm hover:scale-105 cursor-pointer"
                 />
               )}
             </div>
