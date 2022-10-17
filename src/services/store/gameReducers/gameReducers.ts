@@ -13,7 +13,7 @@ interface GameState {
 
 const initialState: GameState = {
   players: JSON.parse(localStorage.getItem(LS_PLRS_KEY) ?? "[]"),
-  cards: JSON.parse(localStorage.getItem(LS_CRDS_KEY)?? JSON.stringify(CardsInitial)),
+  cards: JSON.parse(localStorage.getItem(LS_CRDS_KEY) ?? JSON.stringify(CardsInitial)),
 };
 
 export const playersSlice = createSlice({
@@ -39,6 +39,10 @@ export const cardsSlice = createSlice({
   name: "cards",
   initialState,
   reducers: {
+    layingCards(state){
+      state.cards = CardsInitial;
+      localStorage.setItem(LS_CRDS_KEY, JSON.stringify(state.cards));
+    },
     changeCard(state, action: PayloadAction<ICard>) {
       state.cards.splice(action.payload.id, 1, action.payload);
       localStorage.setItem(LS_CRDS_KEY, JSON.stringify(state.cards));
