@@ -8,7 +8,7 @@ import PlayerInput from "./PlayerInput";
 export default function PlayersPage() {
   const [warning, setWarning] = useState<boolean>(false);
   const { addPlayer } = useActions();
-  const { players } = useAppSelector((state) => state.gameReducers);
+  const { players } = useAppSelector((state) => state.playersReducers);
 
   const addNewPlayer = () => {
     if (players.length === 6) {

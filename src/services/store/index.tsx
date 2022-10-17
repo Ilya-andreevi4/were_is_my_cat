@@ -1,14 +1,14 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
-import { playersReducer } from "./gameReducers/gameReducers";
+import { cardsReducer, playersReducer } from "./gameReducers/gameReducers";
 
 const rootReducer = combineReducers({
-  gameReducers: playersReducer,
+  playersReducers: playersReducer,
+  cardsReducers: cardsReducer,
 });
 
 const store = configureStore({
   reducer: rootReducer,
-
 });
 
 setupListeners(store.dispatch);
