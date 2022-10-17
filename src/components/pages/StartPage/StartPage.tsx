@@ -20,7 +20,7 @@ function StartPage() {
           Начать
         </Link>
         <div className="fixed top-[60%] left-10 h-20 w-fit z-0">
-          <img src="./gray_cat.png" className="z-0"></img>
+          <img src="./gray_cat.png" className="z-0 "></img>
         </div>
       </div>
     </>
