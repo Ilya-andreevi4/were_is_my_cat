@@ -17,10 +17,19 @@ const PlayerInput: FC<PlayerInputProps> = ({ p }) => {
     e: React.ChangeEvent<HTMLInputElement>,
     p: IPlayer
   ) => {
-    setText(e.target.value);
-    p.name = text;
-    changePlayer(p);
+    const newPlayer: IPlayer = {
+      id: p.id,
+      name: e.target.value,
+      avatar: p.avatar,
+      turn: p.turn,
+      points: p.points,
+    };
+    changePlayer(newPlayer);
   };
+
+  // useEffect(()=>{
+  //   setText(p.name)
+  // },[deletePlayer, handleChangePlayer])
 
   return (
     <>
@@ -29,7 +38,7 @@ const PlayerInput: FC<PlayerInputProps> = ({ p }) => {
         type="text"
         id={JSON.stringify(p.id)}
         onChange={(e) => handleChangePlayer(e, p)}
-        value={text}
+        value={p.name}
         placeholder={JSON.stringify("Игрок " + (p.id + 1))}
         className="px-3 py-1 text-xl"
       />

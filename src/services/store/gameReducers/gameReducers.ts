@@ -20,7 +20,7 @@ export const playersSlice = createSlice({
       localStorage.setItem(LS_PLRS_KEY, JSON.stringify(state.players));
     },
     changePlayer(state, action: PayloadAction<IPlayer>) {
-      state.players = state.players.splice(action.payload.id, 1, action.payload);
+      state.players.splice(action.payload.id, 1, action.payload);
       localStorage.setItem(LS_PLRS_KEY, JSON.stringify(state.players));
     },
     removePlayer(state, action: PayloadAction<IPlayer>) {

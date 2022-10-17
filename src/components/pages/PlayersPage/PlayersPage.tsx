@@ -20,7 +20,7 @@ export default function PlayersPage() {
       last &&
         addPlayer({
           id: last.id + 1,
-          name: "Player "+ (last.id + 1),
+          name: "Игрок "+ (last.id + 2),
           avatar: "./setting.png",
           turn: false,
           points: 0,
@@ -28,7 +28,7 @@ export default function PlayersPage() {
     } else {
       addPlayer({
         id: 0,
-        name: "Player",
+        name: "Игрок 1",
         avatar: "./setting.png",
         turn: false,
         points: 0,
