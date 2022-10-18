@@ -2,23 +2,33 @@ import { useEffect, useMemo, useState } from "react";
 import { useActions } from "../../../services/hooks/actions";
 import { useAppSelector } from "../../../services/hooks/redux";
 import { ICard } from "../../../services/models/ICard";
+import { IDices } from "../../../services/models/IDices";
 import { IPlayer } from "../../../services/models/IPlayer";
 
 function GamePage() {
-  const { cards } = useAppSelector((state) => state.cardsReducers);
+  const { cards, players, dices } = useAppSelector((state) => state.gameReducers);
   const [activePlayer, setActivePlayer] = useState<IPlayer>();
   const { layingCards, changeCard, refreshCards } = useActions();
-  const { players } = useAppSelector((state) => state.playersReducers);
-  const {dices} = useAppSelector((state)=> state.dicesReducers)
 
-  const randomize = () => {
-    const getData = Object.values(cards);
-    const cardsData = getData;
-    const cardData = cardsData.sort(() => Math.random() - 0.5);
+  const randomizeCards = () => {
+    const cardData = Object.values(cards).sort(() => Math.random() - 0.5);
     return cardData;
   };
+  const cardsData = useMemo(() => randomizeCards(), []);
 
-  const cardsData = useMemo(() => randomize(), []);
+  const randomizeDice = (dice: IDices) => {
+    const rand = Math.floor(Math.random() * 3);
+    if (dice.mainColorDice[1]) {
+      const rMCDice = dice.mainColorDice[rand];
+      return rMCDice.url;
+    } else if (dice.postureDice[1]) {
+      const rPosDice = dice.postureDice[rand];
+      return rPosDice.url;
+    } else {
+      const rSCDice = dice.secColorDice[rand];
+      return rSCDice.url;
+    }
+  };
 
   useEffect(() => {
     setActivePlayer(players.find((p) => p.turn));
@@ -48,16 +58,18 @@ function GamePage() {
 
         <div className="flex flex-col w-fit h-fit">
           <div className="grid grid-cols-1 gap-0 mx-auto my-4 justify-start h-fit w-fit ">
-            {dices.sort(() => Math.random() - 0.5).map((d)=>{
-              <div className="w-fit h-fit mb-4 border-collapse bottom-1 bg-teal-500">
-              <img
-                src={d.mainColorDice.url1 && d.mainColorDice.sort}
-                alt="Кубик"
-                className="w-20 h-20 lg:w-32 lg:h-32 rounded-md shadow-lg hover:shadow-sm hover:scale-105 cursor-pointer"
-              />
-            </div>
+            {dices.map((dice, idx) => {
+              return (
+                <div key={idx} className="w-fit h-fit mb-4 border-collapse bottom-1 bg-teal-500">
+                  <img
+                    src={randomizeDice(dice)}
+                    alt="Кубик"
+                    className="w-20 h-20 lg:w-32 lg:h-32 rounded-md shadow-lg hover:shadow-sm hover:scale-105 cursor-pointer"
+                  />
+                </div>
+              );
             })}
-            <div className="w-fit h-fit mb-4 border-collapse bottom-1 bg-teal-500">
+            {/* <div className="w-fit h-fit mb-4 border-collapse bottom-1 bg-teal-500">
               <img
                 src="./dices/dice_sit.png"
                 alt="Кубик"
@@ -77,7 +89,7 @@ function GamePage() {
                 alt="Кубик"
                 className="w-20 h-20 lg:w-32 lg:h-32 rounded-md shadow-lg hover:shadow-sm hover:scale-105 cursor-pointer"
               />
-            </div>
+            </div> */}
           </div>
           <button className="px-2 py-2 z-50 font-sans text-xl md:text-3xl bg-orange-500 border-l-red-50 border-2 text-white font-extrabold w-fit mx-auto mt-2 rounded-xl shadow-sm hover:bg-amber-500 hover:shadow-xl hover:-translate-x-1 hover:-translate-y-1 active:translate-x-0 active:translate-y-0 active:bg-amber-600 active:shadow-none">
             Сходить

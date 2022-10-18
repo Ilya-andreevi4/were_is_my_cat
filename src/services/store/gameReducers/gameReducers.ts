@@ -21,8 +21,8 @@ const initialState: GameState = {
   dices: JSON.parse(localStorage.getItem(LS_DCS_KEY) ?? JSON.stringify(DicesInitial)),
 };
 
-export const playersSlice = createSlice({
-  name: "players",
+export const gameSlice = createSlice({
+  name: "game",
   initialState,
   reducers: {
     addPlayer(state, action: PayloadAction<IPlayer>) {
@@ -37,13 +37,6 @@ export const playersSlice = createSlice({
       state.players = state.players.filter((p) => p.id !== action.payload.id);
       localStorage.setItem(LS_PLRS_KEY, JSON.stringify(state.players));
     },
-  },
-});
-
-export const cardsSlice = createSlice({
-  name: "cards",
-  initialState,
-  reducers: {
     layingCards(state){
       state.cards = CardsInitial;
       localStorage.setItem(LS_CRDS_KEY, JSON.stringify(state.cards));
@@ -59,19 +52,12 @@ export const cardsSlice = createSlice({
       });
       localStorage.setItem(LS_CRDS_KEY, JSON.stringify(state.cards));
     },
-  },
-});
-
-export const dicesSlice = createSlice({
-  name: "dices",
-  initialState,
-  reducers: {
     layingDices(state){
       state.dices = DicesInitial;
       localStorage.setItem(LS_DCS_KEY, JSON.stringify(state.dices));
     },
     changeDices(state) {
-      // state.cards.splice(action.payload.id, 1, action.payload);
+      state.dices.sort(() => Math.random() - 0.5);
       localStorage.setItem(LS_DCS_KEY, JSON.stringify(state.dices));
     },
     refreshDices(state) {
@@ -84,9 +70,5 @@ export const dicesSlice = createSlice({
   },
 });
 
-export const playersReducer = playersSlice.reducer;
-export const playersActions = playersSlice.actions;
-export const cardsReducer = cardsSlice.reducer;
-export const cardsActions = cardsSlice.actions;
-export const dicesReducer = dicesSlice.reducer;
-export const dicesActions = dicesSlice.actions;
+export const gameReducer = gameSlice.reducer;
+export const gameActions = gameSlice.actions;

@@ -7,7 +7,7 @@ import PlayersPage from "./components/pages/PlayersPage/PlayersPage";
 
 function App() {
   return (
-    <div className="bg-blue-300 h-fit w-screen mx-auto">
+    <div className="bg-blue-300 h-fit w-screen min-h-screen mx-auto">
       <Header />
       <Routes>
         <Route path="/" element={<StartPage />} />
