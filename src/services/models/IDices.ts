@@ -7,3 +7,9 @@ export interface IDices {
   mainColorDice: IDiceImg[];
   secColorDice: IDiceImg[];
 }
+
+export interface IActiveDices {
+  postureDice: string;
+  mainColorDice: string;
+  secColorDice: string;
+}

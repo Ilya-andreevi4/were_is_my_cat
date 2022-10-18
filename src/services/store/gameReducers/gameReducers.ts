@@ -56,15 +56,8 @@ export const gameSlice = createSlice({
       state.dices = DicesInitial;
       localStorage.setItem(LS_DCS_KEY, JSON.stringify(state.dices));
     },
-    changeDices(state) {
+    dicesRoll(state) {
       state.dices.sort(() => Math.random() - 0.5);
-      localStorage.setItem(LS_DCS_KEY, JSON.stringify(state.dices));
-    },
-    refreshDices(state) {
-      // state.dices.forEach((d) => {
-      //   d.completed = false;
-      //   d.opened = false;
-      // });
       localStorage.setItem(LS_DCS_KEY, JSON.stringify(state.dices));
     },
   },

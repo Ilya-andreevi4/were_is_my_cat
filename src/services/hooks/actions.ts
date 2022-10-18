@@ -1,10 +1,9 @@
 import { bindActionCreators } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
-import { cardsActions, playersActions } from "../store/gameReducers/gameReducers";
+import { gameActions } from "../store/gameReducers/gameReducers";
 
 const actions = {
-  ...playersActions,
-  ...cardsActions,
+  ...gameActions
 };
 
 export const useActions = () => {
