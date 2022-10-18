@@ -7,7 +7,7 @@ export default function Header() {
   const [modalActive, setModalActive] = useState(false);
 
   return (
-    <nav className="flex justify-between items-center py-2 px-5 shadow-lg bg-blue-500 text-white h-fit w-full">
+    <nav className="flex justify-between items-center py-2 px-5 shadow-lg bg-gradient-to-tr from-blue-500 to-blue-600 bg-blue-500 text-white h-fit w-full">
       <h1 className="font-bold text-2xl font-sans">Где мой кот?</h1>
 
       <Settings active={modalActive} setActive={setModalActive}>
