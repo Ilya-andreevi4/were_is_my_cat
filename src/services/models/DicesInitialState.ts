@@ -1,4 +1,4 @@
-import { IDices } from "./IDices";
+import { IActiveDices, IDices } from "./IDices";
 
 export const DicesInitial: IDices[] = [
   {
@@ -29,3 +29,9 @@ export const DicesInitial: IDices[] = [
     ],
   },
 ];
+
+export const activeDicesInitial:IActiveDices ={
+  postureDice: "./dices/dice_stand.png",
+  mainColorDice: "./dices/dice_white.png",
+  secColorDice: "./dices/dice_clear.png",
+}

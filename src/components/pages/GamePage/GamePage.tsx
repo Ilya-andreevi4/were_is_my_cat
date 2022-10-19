@@ -1,49 +1,44 @@
 import { useEffect, useMemo, useState } from "react";
 import { useActions } from "../../../services/hooks/actions";
 import { useAppSelector } from "../../../services/hooks/redux";
-import { IActiveDices, IDices } from "../../../services/models/IDices";
+import { ICard } from "../../../services/models/ICard";
 import { IPlayer } from "../../../services/models/IPlayer";
+import Dices from "./Dices";
 
 function GamePage() {
-  const { cards, players, dices } = useAppSelector(
+  const { cards, players, activeDices } = useAppSelector(
     (state) => state.gameReducers
   );
+  const {openCard}=useActions();
   const [activePlayer, setActivePlayer] = useState<IPlayer>();
-  const [mainColorDice, setMainColorDice] = useState("");
-  const [postureDice, setPostureDice] = useState("");
-  const [secColorDice, setSecColorDice] = useState("");
-  const { dicesRoll } = useActions();
-
   const randomizeCards = () => {
     const cardData = Object.values(cards).sort(() => Math.random() - 0.5);
     return cardData;
   };
   const cardsData = useMemo(() => randomizeCards(), []);
 
-  const randomizeDice = (dice: IDices) => {
-    const random = Math.floor(Math.random() * 3);
-    if (dice.mainColorDice[1]) {
-      const mainColor = dice.mainColorDice[random];
-      setMainColorDice(mainColor.url);
-      return mainColor.url;
-    } else if (dice.postureDice[1]) {
-      const posture = dice.postureDice[random];
-      setPostureDice(posture.url);
-      return posture.url;
-    } else {
-      const secColor = dice.secColorDice[random];
-      setSecColorDice(secColor.url);
-      return secColor.url;
-    }
-  };
-
-  const diceRoll = () => {
-    dicesRoll();
-  };
+  // const openCard = (card: ICard) => {
+  //   console.log(card);
+  //   card.opened = true;
+  //   setTimeout(() => {
+  //     if (
+  //       card.mainColorDice == activeDices.mainColorDice &&
+  //       card.postureDice == activeDices.postureDice &&
+  //       card.secColorDice== activeDices.secColorDice
+  //     ) {
+  //       card.completed = true;
+  //       card.opened = false;
+  //       return
+  //     } else {
+  //       card.opened = false;
+  //       return
+  //     }
+  //   }, 2000);
+  // };
 
   useEffect(() => {
     setActivePlayer(players.find((p) => p.turn));
-  }, []);
+  }, [activePlayer]);
 
   return (
     <div className="flex flex-col justify-between left-0 mx-auto my-auto top-[5%] h-[50%]">
@@ -54,7 +49,11 @@ function GamePage() {
         <div className="grid grid-cols-3 md:grid-cols-7 lg:grid-cols-10 gap-4 p-2 mx-1 mb-2 md:p-6 md:mx-6  justify-between items-baseline h-fit w-[80%] bg-gradient-to-br from-amber-600 to-orange-500 rounded-xl">
           {cardsData.map((card) => {
             return (
-              <div key={card.id} className="h-[2%] min-w-[3vh] w-fit mt-2 mb-2">
+              <button
+                onClick={()=>openCard(card)}
+                key={card.id}
+                className="h-[2%] min-w-[3vh] w-fit mt-2 mb-2"
+              >
                 {!card.completed && (
                   <img
                     src={!card.opened ? card.face : card.back}
@@ -62,34 +61,15 @@ function GamePage() {
                     className="rounded-md shadow-lg hover:shadow-sm hover:scale-105 cursor-pointer"
                   />
                 )}
-              </div>
+              </button>
             );
           })}
         </div>
 
         <div className="flex flex-col w-fit h-fit">
           <div className="grid grid-cols-1 gap-0 mx-auto my-4 justify-start h-fit w-fit ">
-            {dices.map((dice, idx) => {
-              return (
-                <div
-                  key={idx}
-                  className="w-fit h-fit mb-4 border-collapse bottom-1 bg-teal-500"
-                >
-                  <img
-                    src={randomizeDice(dice)}
-                    alt=""
-                    className="w-20 h-20 lg:w-32 lg:h-32 rounded-md shadow-lg hover:shadow-sm hover:scale-105 cursor-pointer"
-                  />
-                </div>
-              );
-            })}
+            <Dices />
           </div>
-          <button
-            onClick={diceRoll}
-            className="px-2 py-2 z-50 font-sans text-xl md:text-3xl bg-orange-500 border-l-red-50 border-2 text-white font-extrabold w-fit mx-auto mt-2 rounded-xl shadow-sm hover:bg-amber-500 hover:shadow-xl hover:-translate-x-1 hover:-translate-y-1 active:translate-x-0 active:translate-y-0 active:bg-amber-600 active:shadow-none"
-          >
-            Сходить
-          </button>
         </div>
       </div>
     </div>
