@@ -11,9 +11,9 @@ function StartPage() {
           Где мой кот?
         </h1>
         <h1 className="text-center mx-auto my-10 mb-0 text-3xl font-bold font-sans text-orange-100">
-        Цель игры – первым найти своего кота,
-        <br/>
-        проявив наблюдательность и скорость реакции.
+          Цель игры – первым найти своего кота,
+          <br />
+          проявив наблюдательность и скорость реакции.
         </h1>
         <Link
           to="/PlayersPage"
@@ -21,11 +21,14 @@ function StartPage() {
         >
           Начать
         </Link>
-        <div className="absolute bottom-1 left-10 h-20 w-fit z-0">
-          <img src="./gray_cat.png" className="z-0 "></img>
-        </div>
-        <div className="absolute bottom-1 font-mono text-xl text-center right-10 h-20 w-fit z-0">
-          By Orekhov Ilya for AxiomaSchool<br/>
+        <img
+          src="./gray_cat.png"
+          className="z-0 absolute bottom-1 left-10 h-20 w-fit"
+        />
+
+        <div className="absolute bottom-1 font-mono text-xl text-center right-10 h-fit w-fit z-0">
+          By Orekhov Ilya for AxiomaSchool
+          <br />
           2022
         </div>
       </div>

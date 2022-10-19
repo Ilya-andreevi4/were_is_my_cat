@@ -75,13 +75,10 @@ export default function PlayersPage() {
           Играть
         </Link>
       </div>
-
-      <div className="absolute bottom-1 right-2 h-fit w-fit z-0">
-        <img
-          src="./gaming_cats.png"
-          className="z-0 h-80 w-auto -scale-x-110 scale-y-110"
-        ></img>
-      </div>
+      <img
+        src="./gaming_cats.png"
+        className="z-0 h-80 w-auto -scale-x-110 scale-y-110 absolute bottom-1 right-2"
+      />
     </>
   );
 }
