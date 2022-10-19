@@ -23,7 +23,7 @@ function StartPage() {
         </Link>
         <img
           src="./gray_cat.png"
-          className="z-0 absolute bottom-1 left-10 h-fit w-fit"
+          className="z-0 absolute bottom-0 left-1 h-fit w-fit"
         />
 
         <div className="absolute bottom-1 font-mono text-xl text-center right-10 h-fit w-fit z-0">
