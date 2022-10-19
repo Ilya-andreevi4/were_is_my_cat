@@ -6,16 +6,18 @@ function StartPage() {
       <div className="fixed left-[65%] -mt-56 mr-min-8 mx-auto w-80 z-0">
         <img src="./ginger_cat.png" alt="Settings" className="block z-0" />
       </div>
-      <div className="flex flex-col justify-between left-0 mx-auto my-auto p-11 top-[5%] h-[50%]">
-        <h1 className="mx-auto my-5 text-8xl tracking-tighter font-extrabold font-sans text-orange-100">
+      <div className="flex flex-col justify-between left-0 mx-auto my-auto p-11 top-[10%] h-[50%]">
+        <h1 className="mx-auto my-16 text-8xl tracking-tighter font-extrabold font-sans text-orange-100">
           Где мой кот?
         </h1>
-        <h1 className="mx-auto mt-5 mb-0 text-4xl font-bold font-sans text-orange-100">
-          Выберите количество игроков
+        <h1 className="text-center mx-auto my-10 mb-0 text-3xl font-bold font-sans text-orange-100">
+        Цель игры – первым найти своего кота,
+        <br/>
+        проявив наблюдательность и скорость реакции.
         </h1>
         <Link
           to="/PlayersPage"
-          className="px-14 py-4 font-sans text-4xl bg-orange-500 text-white font-extrabold w-fit mx-auto mt-8 rounded-lg shadow-xl hover:bg-orange-600 hover:shadow-sm"
+          className="px-14 py-4 font-sans text-4xl bg-orange-500 text-white font-extrabold w-fit mx-auto mt-24 rounded-lg shadow-xl hover:bg-orange-600 hover:shadow-sm"
         >
           Начать
         </Link>

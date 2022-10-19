@@ -7,7 +7,7 @@ import PlayersPage from "./components/pages/PlayersPage/PlayersPage";
 
 function App() {
   return (
-    <div className="bg-blue-300 h-fit w-screen min-h-screen mx-auto">
+    <div className="bg-gradient-to-tr from-sky-400 to-blue-400 bg-blue-400 h-fit w-screen min-h-screen mx-auto">
       <Header />
       <Routes>
         <Route path="/" element={<StartPage />} />

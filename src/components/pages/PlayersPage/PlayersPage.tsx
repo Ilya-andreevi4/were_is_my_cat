@@ -69,7 +69,7 @@ export default function PlayersPage() {
       </ul>
       <Link
         to="/GamePage"
-        className="px-14 py-4 z-50 font-sans text-4xl bg-orange-500 text-white font-extrabold w-fit mx-auto mt-2 rounded-lg shadow-xl hover:bg-orange-600 hover:shadow-sm"
+        className="px-14 py-4 z-10 font-sans text-4xl bg-orange-500 text-white font-extrabold w-fit mx-auto mt-2 rounded-lg shadow-xl hover:bg-orange-600 hover:shadow-sm"
       >
         Играть
       </Link>

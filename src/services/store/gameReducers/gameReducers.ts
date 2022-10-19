@@ -87,40 +87,6 @@ export const gameSlice = createSlice({
       localStorage.setItem(LS_CRDS_KEY, JSON.stringify(state.cards));
     },
     layingDices(state) {
-      // const arrDices = [state.dices[0], state.dices[1], state.dices[3]];
-      // function shuffle(array: IDices[]) {
-      //   var currentIndex = array.length,
-      //     temporaryValue,
-      //     randomIndex;
-      //   while (0 !== currentIndex) {
-      //     randomIndex = Math.floor(Math.random() * currentIndex);
-      //     currentIndex -= 1;
-      //     temporaryValue = array[currentIndex];
-      //     array[currentIndex] = array[randomIndex];
-      //     array[randomIndex] = temporaryValue;
-      //   }
-      //   return array;
-      // }
-      // const randArrDices = shuffle(arrDices);
-      // randArrDices.forEach((d) => {
-      //   if (d.mainColorDice[0]) {
-      //     const random = Math.floor(Math.random() * 3);
-      //     const mainColor = d.mainColorDice[random];
-      //     state.activeDices.mainColorDice = mainColor.url;
-      //   } else if (d.postureDice[0]) {
-      //     const random = Math.floor(Math.random() * 3);
-      //     const posture = d.postureDice[random];
-      //     state.activeDices.postureDice = posture.url;
-      //   } else if (d.secColorDice[0]) {
-      //     const random = Math.floor(Math.random() * 3);
-      //     const secColor = d.secColorDice[random];
-      //     state.activeDices.secColorDice = secColor.url;
-      //   } else {
-      //     console.error("Error: something wrong");
-
-      //   }
-      // });
-
       state.activeDices = activeDicesInitial;
       localStorage.setItem(LS_ADCS_KEY, JSON.stringify(state.activeDices));
     },
