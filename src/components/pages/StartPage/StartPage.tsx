@@ -21,10 +21,10 @@ function StartPage() {
         >
           Начать
         </Link>
-        <div className=" top-[60%] left-10 h-20 w-fit z-0">
+        <div className=" bottom-1 left-10 h-20 w-fit z-0">
           <img src="./gray_cat.png" className="z-0 "></img>
         </div>
-        <div className=" top-[90%] font-mono text-xl text-center right-10 h-20 w-fit z-0">
+        <div className=" bottom-1 font-mono text-xl text-center right-10 h-20 w-fit z-0">
           By Orekhov Ilya for AxiomaSchool<br/>
           2022
         </div>
