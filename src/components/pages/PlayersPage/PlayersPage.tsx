@@ -77,7 +77,7 @@ export default function PlayersPage() {
       </div>
       <img
         src="./gaming_cats.png"
-        className="z-0 h-80 w-auto -scale-x-110 scale-y-110 absolute bottom-1 right-2"
+        className="z-0 h-80 w-auto -scale-x-110 scale-y-110 absolute bottom-4 right-2"
       />
     </>
   );
