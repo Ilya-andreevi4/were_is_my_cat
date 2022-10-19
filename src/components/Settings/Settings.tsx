@@ -11,7 +11,7 @@ const Settings: FC<SettingsProps> = ({ active, setActive, children }) => {
     <div
       className={
         active
-          ? "fixed top-0 left-0 z-50 min-h-full bg-stone-400 bg-opacity-40 min-w-full"
+          ? "absolute top-0 left-0 z-50 min-h-full bg-stone-400 bg-opacity-40 min-w-full"
           : "hidden"
       }
       onClick={() => setActive(false)}
