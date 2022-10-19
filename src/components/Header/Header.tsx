@@ -18,13 +18,18 @@ export default function Header() {
 
       <Settings active={modalActive} setActive={setModalActive}>
         <h1>Настройки</h1>
+
+        <img
+          src="./instruction.png"
+          alt="Инструкция"
+          className="mx-2 h-fit w-fit z-10 scale-110"
+        />
         <Link
           to="/"
           onClick={() => handleQuit()}
-          className="px-4 py-2 bg-red-500 text-white w-fit mt-2 rounded-md shadow-xl hover:bg-red-600 hover:shadow-sm"
+          className="px-4 py-0 bg-red-600 text-white w-fit rounded-md shadow-xl hover:bg-rose-600 hover:shadow-sm"
         >
-          {" "}
-          Выход
+          Выход в главное меню
         </Link>
       </Settings>
 
