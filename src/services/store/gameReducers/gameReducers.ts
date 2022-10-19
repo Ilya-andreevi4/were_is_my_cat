@@ -50,7 +50,7 @@ export const gameSlice = createSlice({
       localStorage.setItem(LS_PLRS_KEY, JSON.stringify(state.players));
     },
     layingCards(state) {
-      state.cards = CardsInitial;
+      state.cards.sort(() => Math.random() - 0.5);
       localStorage.setItem(LS_CRDS_KEY, JSON.stringify(state.cards));
     },
     changeCard(state, action: PayloadAction<ICard>) {
@@ -63,25 +63,23 @@ export const gameSlice = createSlice({
       const card = cards.find((c) => c.id === action.payload.id);
       if (card) {
         card.opened = true;
-        cards.splice(card?.id, 1, card);
         localStorage.setItem(LS_CRDS_KEY, JSON.stringify(cards));
-        setTimeout(() => {
-          if (
-            card.mainColorDice == dice.mainColorDice &&
-            card.postureDice == dice.postureDice &&
-            card.secColorDice == dice.secColorDice
-          ) {
-            card.completed = true;
-            card.opened = false;
-            cards.splice(card?.id, 1, card);
-            localStorage.setItem(LS_CRDS_KEY, JSON.stringify(cards));
-          } else {
-            card.opened = false;
-            cards.splice(card?.id, 1, card);
-            localStorage.setItem(LS_CRDS_KEY, JSON.stringify(cards));
-            return;
-          }
-        }, 2000);
+        if (
+          card.mainColorDice === dice.mainColorDice &&
+          card.postureDice === dice.postureDice &&
+          card.secColorDice === dice.secColorDice
+        ) {
+          card.completed = true;
+          card.opened = false;
+          localStorage.setItem(LS_CRDS_KEY, JSON.stringify(cards));
+          return;
+        } else {
+          card.opened = false;
+          localStorage.setItem(LS_CRDS_KEY, JSON.stringify(cards));
+          return;
+        }
+      }else{
+        console.error("Error: card not found!");
       }
     },
     refreshCards(state) {
@@ -104,7 +102,7 @@ export const gameSlice = createSlice({
         } else if (d.postureDice[1]) {
           const posture = d.postureDice[random];
           state.activeDices.postureDice = posture.url;
-        } else {
+        } else if (d.secColorDice[1]) {
           const secColor = d.secColorDice[random];
           state.activeDices.secColorDice = secColor.url;
         }

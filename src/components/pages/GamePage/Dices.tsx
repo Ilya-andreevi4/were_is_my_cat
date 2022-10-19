@@ -11,24 +11,6 @@ const Dices = () => {
     activeDices.secColorDice,
   ]);
 
-  // const ranDiceArr = Object.values(diceArr).sort(() => Math.random() - 0.5);
-
-  // const randomizeDice = (dice: IDices) => {
-  //   const random = Math.floor(Math.random() * 3);
-  //   if (dice.mainColorDice[1]) {
-  //     const mainColor = dice.mainColorDice[random];
-  //     setMainColorDice(mainColor.url);
-  //     return mainColor.url;
-  //   } else if (dice.postureDice[1]) {
-  //     const posture = dice.postureDice[random];
-  //     setPostureDice(posture.url);
-  //     return posture.url;
-  //   } else {
-  //     const secColor = dice.secColorDice[random];
-  //     setSecColorDice(secColor.url);
-  //     return secColor.url;
-  //   }
-  // };
   useEffect(() => {
     setDiceArr([
       activeDices.mainColorDice,

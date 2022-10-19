@@ -6,39 +6,16 @@ import { IPlayer } from "../../../services/models/IPlayer";
 import Dices from "./Dices";
 
 function GamePage() {
-  const { cards, players, activeDices } = useAppSelector(
-    (state) => state.gameReducers
-  );
-  const {openCard}=useActions();
+  const { cards, players } = useAppSelector((state) => state.gameReducers);
+  const { layingCards, openCard } = useActions();
   const [activePlayer, setActivePlayer] = useState<IPlayer>();
-  const randomizeCards = () => {
-    const cardData = Object.values(cards).sort(() => Math.random() - 0.5);
-    return cardData;
-  };
-  const cardsData = useMemo(() => randomizeCards(), []);
-
-  // const openCard = (card: ICard) => {
-  //   console.log(card);
-  //   card.opened = true;
-  //   setTimeout(() => {
-  //     if (
-  //       card.mainColorDice == activeDices.mainColorDice &&
-  //       card.postureDice == activeDices.postureDice &&
-  //       card.secColorDice== activeDices.secColorDice
-  //     ) {
-  //       card.completed = true;
-  //       card.opened = false;
-  //       return
-  //     } else {
-  //       card.opened = false;
-  //       return
-  //     }
-  //   }, 2000);
-  // };
 
   useEffect(() => {
     setActivePlayer(players.find((p) => p.turn));
   }, [activePlayer]);
+  useEffect(() => {
+    layingCards();
+  }, []);
 
   return (
     <div className="flex flex-col justify-between left-0 mx-auto my-auto top-[5%] h-[50%]">
@@ -47,10 +24,10 @@ function GamePage() {
       </div>
       <div className="flex flex-row">
         <div className="grid grid-cols-3 md:grid-cols-7 lg:grid-cols-10 gap-4 p-2 mx-1 mb-2 md:p-6 md:mx-6  justify-between items-baseline h-fit w-[80%] bg-gradient-to-br from-amber-600 to-orange-500 rounded-xl">
-          {cardsData.map((card) => {
+          {cards.map((card) => {
             return (
               <button
-                onClick={()=>openCard(card)}
+                onClick={() => openCard(card)}
                 key={card.id}
                 className="h-[2%] min-w-[3vh] w-fit mt-2 mb-2"
               >
