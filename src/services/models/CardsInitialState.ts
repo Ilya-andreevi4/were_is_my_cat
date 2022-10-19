@@ -60,7 +60,7 @@ export const CardsInitial: ICard[] = [
     back: "./cards/backcard_6.png",
 
     postureDice: "./dices/dice_sit.png",
-    mainColorDice: "./dices/dice_white.png",
+    mainColorDice: "./dices/dice_gray.png",
     secColorDice: "./dices/dice_striped.png",
     opened: false,
     completed: false,
@@ -71,7 +71,7 @@ export const CardsInitial: ICard[] = [
     back: "./cards/backcard_7.png",
 
     postureDice: "./dices/dice_rest.png",
-    mainColorDice: "./dices/dice_white.png",
+    mainColorDice: "./dices/dice_gray.png",
     secColorDice: "./dices/dice_striped.png",
     opened: false,
     completed: false,
@@ -126,7 +126,7 @@ export const CardsInitial: ICard[] = [
     back: "./cards/backcard_12.png",
 
     postureDice: "./dices/dice_sit.png",
-    mainColorDice: "./dices/dice_white.png",
+    mainColorDice: "./dices/dice_gray.png",
     secColorDice: "./dices/dice_spotted.png",
     opened: false,
     completed: false,
@@ -170,7 +170,7 @@ export const CardsInitial: ICard[] = [
     back: "./cards/backcard_16.png",
 
     postureDice: "./dices/dice_stand.png",
-    mainColorDice: "./dices/dice_white.png",
+    mainColorDice: "./dices/dice_gray.png",
     secColorDice: "./dices/dice_striped.png",
     opened: false,
     completed: false,
@@ -236,7 +236,7 @@ export const CardsInitial: ICard[] = [
     back: "./cards/backcard_22.png",
 
     postureDice: "./dices/dice_stand.png",
-    mainColorDice: "./dices/dice_white.png",
+    mainColorDice: "./dices/dice_gray.png",
     secColorDice: "./dices/dice_spotted.png",
     opened: false,
     completed: false,
@@ -258,7 +258,7 @@ export const CardsInitial: ICard[] = [
     back: "./cards/backcard_24.png",
 
     postureDice: "./dices/dice_stand.png",
-    mainColorDice: "./dices/dice_white.png",
+    mainColorDice: "./dices/dice_gray.png",
     secColorDice: "./dices/dice_clear.png",
     opened: false,
     completed: false,
@@ -280,7 +280,7 @@ export const CardsInitial: ICard[] = [
     back: "./cards/backcard_26.png",
 
     postureDice: "./dices/dice_sit.png",
-    mainColorDice: "./dices/dice_white.png",
+    mainColorDice: "./dices/dice_gray.png",
     secColorDice: "./dices/dice_clear.png",
     opened: false,
     completed: false,

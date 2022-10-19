@@ -31,12 +31,12 @@ const Dices = () => {
           return (
             <div
               key={idx}
-              className="w-fit h-fit mb-4 border-collapse bottom-1 bg-teal-500"
+              className="w-fit h-fit mb-4 border-2 rounded-md bottom-1 bg-teal-500 shadow-lg hover:shadow-sm hover:scale-105 cursor-pointer"
             >
               <img
                 src={d}
                 alt=""
-                className="w-20 h-20 lg:w-32 lg:h-32 rounded-md shadow-lg hover:shadow-sm hover:scale-105 cursor-pointer"
+                className="w-20 h-20 lg:w-32 lg:h-32"
               />
             </div>
           );

@@ -10,7 +10,6 @@ import {
 
 const LS_PLRS_KEY = "react_plrs_keys";
 const LS_CRDS_KEY = "react_crds_keys";
-const LS_DCS_KEY = "react_dcs_keys";
 const LS_ADCS_KEY = "react_adcs_keys";
 
 interface GameState {
@@ -25,9 +24,7 @@ const initialState: GameState = {
   cards: JSON.parse(
     localStorage.getItem(LS_CRDS_KEY) ?? JSON.stringify(CardsInitial)
   ),
-  dices: JSON.parse(
-    localStorage.getItem(LS_DCS_KEY) ?? JSON.stringify(DicesInitial)
-  ),
+  dices: DicesInitial,
   activeDices: JSON.parse(
     localStorage.getItem(LS_ADCS_KEY) ?? JSON.stringify(DicesInitial)
   ),
@@ -78,7 +75,7 @@ export const gameSlice = createSlice({
           localStorage.setItem(LS_CRDS_KEY, JSON.stringify(cards));
           return;
         }
-      }else{
+      } else {
         console.error("Error: card not found!");
       }
     },
@@ -90,19 +87,55 @@ export const gameSlice = createSlice({
       localStorage.setItem(LS_CRDS_KEY, JSON.stringify(state.cards));
     },
     layingDices(state) {
+      // const arrDices = [state.dices[0], state.dices[1], state.dices[3]];
+      // function shuffle(array: IDices[]) {
+      //   var currentIndex = array.length,
+      //     temporaryValue,
+      //     randomIndex;
+      //   while (0 !== currentIndex) {
+      //     randomIndex = Math.floor(Math.random() * currentIndex);
+      //     currentIndex -= 1;
+      //     temporaryValue = array[currentIndex];
+      //     array[currentIndex] = array[randomIndex];
+      //     array[randomIndex] = temporaryValue;
+      //   }
+      //   return array;
+      // }
+      // const randArrDices = shuffle(arrDices);
+      // randArrDices.forEach((d) => {
+      //   if (d.mainColorDice[0]) {
+      //     const random = Math.floor(Math.random() * 3);
+      //     const mainColor = d.mainColorDice[random];
+      //     state.activeDices.mainColorDice = mainColor.url;
+      //   } else if (d.postureDice[0]) {
+      //     const random = Math.floor(Math.random() * 3);
+      //     const posture = d.postureDice[random];
+      //     state.activeDices.postureDice = posture.url;
+      //   } else if (d.secColorDice[0]) {
+      //     const random = Math.floor(Math.random() * 3);
+      //     const secColor = d.secColorDice[random];
+      //     state.activeDices.secColorDice = secColor.url;
+      //   } else {
+      //     console.error("Error: something wrong");
+
+      //   }
+      // });
+
       state.activeDices = activeDicesInitial;
       localStorage.setItem(LS_ADCS_KEY, JSON.stringify(state.activeDices));
     },
     dicesRoll(state) {
-      const random = Math.floor(Math.random() * 3);
       state.dices.forEach((d) => {
         if (d.mainColorDice[1]) {
+          const random = Math.floor(Math.random() * 3);
           const mainColor = d.mainColorDice[random];
           state.activeDices.mainColorDice = mainColor.url;
         } else if (d.postureDice[1]) {
+          const random = Math.floor(Math.random() * 3);
           const posture = d.postureDice[random];
           state.activeDices.postureDice = posture.url;
         } else if (d.secColorDice[1]) {
+          const random = Math.floor(Math.random() * 3);
           const secColor = d.secColorDice[random];
           state.activeDices.secColorDice = secColor.url;
         }

@@ -22,6 +22,10 @@ function StartPage() {
         <div className="fixed top-[60%] left-10 h-20 w-fit z-0">
           <img src="./gray_cat.png" className="z-0 "></img>
         </div>
+        <div className="fixed top-[90%] font-mono text-xl text-center right-10 h-20 w-fit z-0">
+          By Orekhov Ilya for AxiomaSchool<br/>
+          2022
+        </div>
       </div>
     </>
   );
