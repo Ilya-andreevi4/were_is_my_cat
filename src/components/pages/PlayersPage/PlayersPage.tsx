@@ -76,7 +76,7 @@ export default function PlayersPage() {
         </Link>
       </div>
 
-      <div className="fixed bottom-[5%] left-[5%] h-fit w-fit z-0">
+      <div className="absolute bottom-1 right-2 h-fit w-fit z-0">
         <img
           src="./gaming_cats.png"
           className="z-0 h-80 w-auto -scale-x-110 scale-y-110"

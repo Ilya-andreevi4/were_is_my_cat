@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 function StartPage() {
   return (
     <>
-      <div className="left-[65%] -mt-56 mr-min-8 mx-auto w-80 z-0">
+      <div className="absolute left-[65%] -mt-56 mr-min-8 mx-auto w-80 z-0">
         <img src="./ginger_cat.png" alt="Settings" className="block z-0" />
       </div>
       <div className="flex flex-col justify-between left-0 mx-auto my-auto p-11 top-[10%] h-[50%]">
@@ -21,10 +21,10 @@ function StartPage() {
         >
           Начать
         </Link>
-        <div className=" bottom-1 left-10 h-20 w-fit z-0">
+        <div className="absolute bottom-1 left-10 h-20 w-fit z-0">
           <img src="./gray_cat.png" className="z-0 "></img>
         </div>
-        <div className=" bottom-1 font-mono text-xl text-center right-10 h-20 w-fit z-0">
+        <div className="absolute bottom-1 font-mono text-xl text-center right-10 h-20 w-fit z-0">
           By Orekhov Ilya for AxiomaSchool<br/>
           2022
         </div>
