@@ -102,22 +102,45 @@ export const gameSlice = createSlice({
       state.activeDices = activeDicesInitial;
       localStorage.setItem(LS_ADCS_KEY, JSON.stringify(state.activeDices));
     },
+
     dicesRoll(state) {
-      state.dices.forEach((d) => {
-        if (d.mainColorDice[1]) {
-          const random = Math.floor(Math.random() * 3);
-          const mainColor = d.mainColorDice[random];
-          state.activeDices.mainColorDice = mainColor.url;
-        } else if (d.postureDice[1]) {
-          const random = Math.floor(Math.random() * 3);
-          const posture = d.postureDice[random];
-          state.activeDices.postureDice = posture.url;
-        } else if (d.secColorDice[1]) {
-          const random = Math.floor(Math.random() * 3);
-          const secColor = d.secColorDice[random];
-          state.activeDices.secColorDice = secColor.url;
+      const activeDices = state.activeDices;
+      const getData = () => {
+        state.dices.forEach((d) => {
+          if (d.mainColorDice[1]) {
+            const random = Math.floor(Math.random() * 3);
+            const mainColor = d.mainColorDice[random];
+            activeDices.mainColorDice = mainColor.url;
+          } else if (d.postureDice[1]) {
+            const random = Math.floor(Math.random() * 3);
+            const posture = d.postureDice[random];
+            activeDices.postureDice = posture.url;
+          } else if (d.secColorDice[1]) {
+            const random = Math.floor(Math.random() * 3);
+            const secColor = d.secColorDice[random];
+            activeDices.secColorDice = secColor.url;
+          }
+        });
+      };
+      if (state.cards.filter((el) => el.completed)) {
+        const complietedCards = state.cards.filter((el) => el.completed);
+        const handlerCheck = () => {
+          const check = complietedCards.some(
+            (card) =>
+              card.mainColorDice === activeDices.mainColorDice &&
+              card.postureDice === activeDices.postureDice &&
+              card.secColorDice === activeDices.secColorDice
+          );
+          return check;
+        };
+
+        while (handlerCheck() !== false) {
+          getData();
         }
-      });
+      } else {
+        getData();
+      }
+
       return localStorage.setItem(
         LS_ADCS_KEY,
         JSON.stringify(state.activeDices)

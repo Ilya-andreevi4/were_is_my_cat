@@ -11,7 +11,7 @@ export default function PlayersPage() {
   const { players } = useAppSelector((state) => state.gameReducers);
 
   const addNewPlayer = () => {
-    if (players.length > 5) {
+    if (players.length > 3) {
       setWarning(true);
       return;
     } else if (players.length > 0) {
@@ -68,7 +68,7 @@ export default function PlayersPage() {
       <div className="grid grid-cols-1">
         {warning && (
           <h1 className="px-4 py-0 z-10 font-sans text-xl text-red-600 font-extrabold w-fit mx-auto">
-            Максимальное количество игроков - 6
+            Максимальное количество игроков - 4
           </h1>
         )}
         <Link
@@ -81,7 +81,7 @@ export default function PlayersPage() {
 
       <img
         src="./gaming_cats.png"
-        className="z-0 w-100 -scale-x-110 scale-y-110 absolute bottom-[2%] right-[3%]"
+        className="z-0 -scale-x-100 scale-y-100 absolute bottom-4 right-4"
       />
     </>
   );
