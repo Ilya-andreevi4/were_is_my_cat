@@ -7,6 +7,7 @@ import {
   activeDicesInitial,
   DicesInitial,
 } from "../../models/DicesInitialState";
+import { IGameStatus } from "../../models/IGameStatus";
 
 const LS_PLRS_KEY = "react_plrs_keys";
 const LS_CRDS_KEY = "react_crds_keys";
@@ -17,6 +18,7 @@ interface GameState {
   cards: ICard[];
   dices: IDices[];
   activeDices: IActiveDices;
+  gameStatus: IGameStatus;
 }
 
 const initialState: GameState = {
@@ -28,6 +30,10 @@ const initialState: GameState = {
   activeDices: JSON.parse(
     localStorage.getItem(LS_ADCS_KEY) ?? JSON.stringify(DicesInitial)
   ),
+  gameStatus: {
+    turn: true,
+    check: "play",
+  },
 };
 
 export const gameSlice = createSlice({
@@ -55,12 +61,18 @@ export const gameSlice = createSlice({
       localStorage.setItem(LS_CRDS_KEY, JSON.stringify(state.cards));
     },
     openCard(state, action: PayloadAction<ICard>) {
-      const dice = state.activeDices;
       const cards = state.cards;
       const card = cards.find((c) => c.id === action.payload.id);
       if (card) {
         card.opened = true;
         localStorage.setItem(LS_CRDS_KEY, JSON.stringify(cards));
+      }
+    },
+    checkCard(state, action: PayloadAction<ICard>) {
+      const dice = state.activeDices;
+      const cards = state.cards;
+      const card = cards.find((c) => c.id === action.payload.id);
+      if (card) {
         if (
           card.mainColorDice === dice.mainColorDice &&
           card.postureDice === dice.postureDice &&
@@ -75,8 +87,6 @@ export const gameSlice = createSlice({
           localStorage.setItem(LS_CRDS_KEY, JSON.stringify(cards));
           return;
         }
-      } else {
-        console.error("Error: card not found!");
       }
     },
     refreshCards(state) {
@@ -84,12 +94,14 @@ export const gameSlice = createSlice({
         c.completed = false;
         c.opened = false;
       });
+      state.gameStatus.turn = true;
+      state.gameStatus.check = "play";
       localStorage.setItem(LS_CRDS_KEY, JSON.stringify(state.cards));
     },
-    // layingDices(state) {
-    //   state.activeDices = activeDicesInitial;
-    //   localStorage.setItem(LS_ADCS_KEY, JSON.stringify(state.activeDices));
-    // },
+    layingDices(state) {
+      state.activeDices = activeDicesInitial;
+      localStorage.setItem(LS_ADCS_KEY, JSON.stringify(state.activeDices));
+    },
     dicesRoll(state) {
       state.dices.forEach((d) => {
         if (d.mainColorDice[1]) {

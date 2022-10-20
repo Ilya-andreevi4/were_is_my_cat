@@ -41,7 +41,7 @@ export default function PlayersPage() {
 
   return (
     <>
-      <div className="grid grid-cols-1 gap-10 place-content-center z-10 left-0 mx-auto p-5 h-full max-h-full">
+      <div className="grid grid-cols-1 gap-4 place-content-center z-10 left-0 mx-auto p-5 h-full max-h-full">
         <h1 className="mx-auto text-4xl tracking-tighter font-extrabold font-sans text-white">
           Список игроков
         </h1>
@@ -73,7 +73,7 @@ export default function PlayersPage() {
         )}
         <Link
           to="/GamePage"
-          className="px-8 py-1 z-10 font-sans text-3xl bg-orange-500 text-white font-extrabold w-fit mx-auto rounded-lg shadow-xl hover:bg-orange-600 hover:shadow-sm"
+          className="opacity-90 px-8 py-1 z-10 font-sans text-3xl bg-orange-500 text-white font-extrabold w-fit mx-auto rounded-lg shadow-xl hover:bg-orange-600 hover:shadow-sm"
         >
           Играть
         </Link>
@@ -81,7 +81,7 @@ export default function PlayersPage() {
 
       <img
         src="./gaming_cats.png"
-        className="z-0 w-100 -scale-x-110 scale-y-110 absolute bottom-0 right-1"
+        className="z-0 w-100 -scale-x-110 scale-y-110 absolute bottom-[2%] right-[3%]"
       />
     </>
   );
