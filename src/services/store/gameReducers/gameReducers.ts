@@ -86,10 +86,10 @@ export const gameSlice = createSlice({
       });
       localStorage.setItem(LS_CRDS_KEY, JSON.stringify(state.cards));
     },
-    layingDices(state) {
-      state.activeDices = activeDicesInitial;
-      localStorage.setItem(LS_ADCS_KEY, JSON.stringify(state.activeDices));
-    },
+    // layingDices(state) {
+    //   state.activeDices = activeDicesInitial;
+    //   localStorage.setItem(LS_ADCS_KEY, JSON.stringify(state.activeDices));
+    // },
     dicesRoll(state) {
       state.dices.forEach((d) => {
         if (d.mainColorDice[1]) {

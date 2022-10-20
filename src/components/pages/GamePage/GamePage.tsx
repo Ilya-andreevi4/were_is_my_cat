@@ -24,7 +24,6 @@ function GamePage() {
         <h2 className="my-auto">{activePlayer?`Ходит ${activePlayer?.name}`:"Найди кота!"}</h2>
       </div>
       <div className="flex flex-row">
-      {/* bg-gradient-to-br from-amber-600 to-orange-500 rounded-xl */}
         <div className="grid grid-cols-3 md:grid-cols-7 lg:grid-cols-10 gap-4 p-2 mx-1 md:p-6 md:mx-6 justify-between items-baseline h-fit w-[80%] ">
           {cards.map((card) => {
             return (

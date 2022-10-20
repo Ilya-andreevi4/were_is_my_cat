@@ -5,7 +5,9 @@ import diceDescription from "./diceDescription";
 
 const Dices = () => {
   const { activeDices } = useAppSelector((state) => state.gameReducers);
-  const { dicesRoll, layingDices } = useActions();
+  const { dicesRoll,
+    // layingDices
+  } = useActions();
   const [diceArr, setDiceArr] = useState([
     activeDices.mainColorDice,
     activeDices.postureDice,
@@ -17,17 +19,16 @@ const Dices = () => {
       activeDices.mainColorDice,
       activeDices.postureDice,
       activeDices.secColorDice,
-    ]);
+    ].sort(() => Math.random() - 0.5));
   }, [activeDices]);
 
-  useEffect(() => {
-    layingDices();
-  }, []);
+  // useEffect(() => {
+  //   layingDices();
+  // }, []);
 
   return (
     <>
       {Object.values(diceArr)
-        .sort(() => Math.random() - 0.5)
         .map((d, idx) => {
           return (
             <div
