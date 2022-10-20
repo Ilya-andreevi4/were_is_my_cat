@@ -11,10 +11,11 @@ export default function PlayersPage() {
   const { players } = useAppSelector((state) => state.gameReducers);
 
   const addNewPlayer = () => {
-    if (players.length === 6) {
+    if (players.length > 5) {
       setWarning(true);
       return;
     } else if (players.length > 0) {
+      setWarning(false);
       const last = players[players.length - 1];
       last &&
         addPlayer({
@@ -25,6 +26,7 @@ export default function PlayersPage() {
           points: 0,
         });
     } else {
+      setWarning(false);
       addPlayer({
         id: 0,
         name: "Игрок 1",
@@ -39,24 +41,18 @@ export default function PlayersPage() {
 
   return (
     <>
-      <div className="flex flex-col justify-between left-0 mx-auto my-auto p-11 top-[5%] h-[50%]">
-        <h1 className="mx-auto my-5 text-7xl tracking-tighter font-extrabold font-sans text-orange-100">
+      <div className="grid grid-cols-1 gap-10 place-content-center z-10 left-0 mx-auto p-5 h-full max-h-full">
+        <h1 className="mx-auto text-4xl tracking-tighter font-extrabold font-sans text-white">
           Список игроков
         </h1>
+        <button
+          onClick={addNewPlayer}
+          className="px-2 py-1 z-10 font-sans text-xl bg-green-500 text-white font-bold w-fit mx-auto rounded-lg shadow-xl hover:bg-green-600 hover:shadow-sm"
+        >
+          Добавить игрока
+        </button>
 
-        {warning ? (
-          <h1 className="px-4 py-4 z-10 font-sans text-3xl text-red-600 font-extrabold w-fit mx-auto mt-2">
-            Максимальное количество игроков - 6
-          </h1>
-        ) : (
-          <button
-            onClick={addNewPlayer}
-            className="px-4 py-4 z-10 font-sans text-4xl bg-green-500 text-white font-extrabold w-fit mx-auto mt-2 rounded-lg shadow-xl hover:bg-green-600 hover:shadow-sm"
-          >
-            Добавить игрока
-          </button>
-        )}
-        <ul className="List-none my-4 mx-auto z-10">
+        <ul className="List-none mx-auto z-10">
           {players.map((player: IPlayer, id: number) => {
             return (
               <li
@@ -68,16 +64,24 @@ export default function PlayersPage() {
             );
           })}
         </ul>
+      </div>
+      <div className="grid grid-cols-1">
+        {warning && (
+          <h1 className="px-4 py-0 z-10 font-sans text-xl text-red-600 font-extrabold w-fit mx-auto">
+            Максимальное количество игроков - 6
+          </h1>
+        )}
         <Link
           to="/GamePage"
-          className="px-14 py-4 z-10 font-sans text-4xl bg-orange-500 text-white font-extrabold w-fit mx-auto mt-2 rounded-lg shadow-xl hover:bg-orange-600 hover:shadow-sm"
+          className="px-8 py-1 z-10 font-sans text-3xl bg-orange-500 text-white font-extrabold w-fit mx-auto rounded-lg shadow-xl hover:bg-orange-600 hover:shadow-sm"
         >
           Играть
         </Link>
       </div>
+
       <img
         src="./gaming_cats.png"
-        className="z-0 h-80 w-auto -scale-x-110 scale-y-110 absolute bottom-4 right-2"
+        className="z-0 w-100 -scale-x-110 scale-y-110 absolute bottom-0 right-1"
       />
     </>
   );

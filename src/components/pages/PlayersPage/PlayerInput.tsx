@@ -27,24 +27,20 @@ const PlayerInput: FC<PlayerInputProps> = ({ p }) => {
     changePlayer(newPlayer);
   };
 
-  // useEffect(()=>{
-  //   setText(p.name)
-  // },[deletePlayer, handleChangePlayer])
-
   return (
     <>
-      <h2 className="mr-4 text-4xl">{p.id + 1}</h2>
+      <h2 className="mr-3 text-2xl">{p.id + 1}</h2>
       <input
         type="text"
         id={JSON.stringify(p.id)}
         onChange={(e) => handleChangePlayer(e, p)}
         value={p.name}
         placeholder={JSON.stringify("Игрок " + (p.id + 1))}
-        className="px-3 py-1 text-xl"
+        className="px-2 py-0 text-lg w-52 rounded-md border-blue-700 border-2"
       />
       <button
         onClick={() => deletePlayer(p)}
-        className="px-4 py-2 font-sans text-lg bg-red-500 text-white font-bold w-fit ml-4 rounded-lg shadow-xl hover:bg-red-600 hover:shadow-sm"
+        className="px-2 py-0 font-sans text-lg bg-red-500 text-white font-bold w-fit ml-2 rounded-md shadow-xl hover:bg-red-600 hover:shadow-sm"
       >
         Удалить
       </button>
