@@ -5,10 +5,10 @@ import Settings from "../Settings/Settings";
 
 export default function Header() {
   const [modalActive, setModalActive] = useState(false);
-  const { refreshCards } = useActions();
+  const { quitGame } = useActions();
 
   const handleQuit = () => {
-    refreshCards();
+    quitGame();
     setModalActive(false);
   };
 

@@ -4,15 +4,20 @@ import { ICard } from "../../models/ICard";
 import { CardsInitial } from "../../models/CardsInitialState";
 import { IActiveDices, IDices } from "../../models/IDices";
 import {
-  activeDicesInitial,
   DicesInitial,
   startDicesInitial,
 } from "../../models/DicesInitialState";
 import { IGameStatus } from "../../models/IGameStatus";
+import { PlayerInitialState } from "../../models/PlayersInitialState";
 
 const LS_PLRS_KEY = "react_plrs_keys";
 const LS_CRDS_KEY = "react_crds_keys";
 const LS_ADCS_KEY = "react_adcs_keys";
+const LS_GS_KEY = "react_gs_keys";
+const PLAYING_DICES = "playingDice";
+const FINDING_CAT = "findingCat";
+const SCORING = "scoring";
+const END_GAME = "endGame";
 
 interface GameState {
   players: IPlayer[];
@@ -23,7 +28,9 @@ interface GameState {
 }
 
 const initialState: GameState = {
-  players: JSON.parse(localStorage.getItem(LS_PLRS_KEY) ?? "[]"),
+  players: JSON.parse(
+    localStorage.getItem(LS_PLRS_KEY) ?? JSON.stringify(PlayerInitialState)
+  ),
   cards: JSON.parse(
     localStorage.getItem(LS_CRDS_KEY) ?? JSON.stringify(CardsInitial)
   ),
@@ -33,7 +40,7 @@ const initialState: GameState = {
   ),
   gameStatus: {
     turn: true,
-    check: "play",
+    check: localStorage.getItem(LS_GS_KEY) ?? JSON.stringify(PLAYING_DICES),
   },
 };
 
@@ -41,6 +48,7 @@ export const gameSlice = createSlice({
   name: "game",
   initialState,
   reducers: {
+    // Players
     addPlayer(state, action: PayloadAction<IPlayer>) {
       state.players.push(action.payload);
       localStorage.setItem(LS_PLRS_KEY, JSON.stringify(state.players));
@@ -53,20 +61,19 @@ export const gameSlice = createSlice({
       state.players = state.players.filter((p) => p.id !== action.payload.id);
       localStorage.setItem(LS_PLRS_KEY, JSON.stringify(state.players));
     },
+
+    // Cards
     layingCards(state) {
+      state.gameStatus.check = PLAYING_DICES;
       state.cards.sort(() => Math.random() - 0.5);
       localStorage.setItem(LS_CRDS_KEY, JSON.stringify(state.cards));
-    },
-    changeCard(state, action: PayloadAction<ICard>) {
-      state.cards.splice(action.payload.id, 1, action.payload);
-      localStorage.setItem(LS_CRDS_KEY, JSON.stringify(state.cards));
+      localStorage.setItem(LS_GS_KEY, JSON.stringify(state.gameStatus.check));
     },
     openCard(state, action: PayloadAction<ICard>) {
-      const cards = state.cards;
-      const card = cards.find((c) => c.id === action.payload.id);
+      const card = state.cards.find((c) => c.id === action.payload.id);
       if (card) {
         card.opened = true;
-        localStorage.setItem(LS_CRDS_KEY, JSON.stringify(cards));
+        localStorage.setItem(LS_CRDS_KEY, JSON.stringify(state.cards));
       }
     },
     checkCard(state, action: PayloadAction<ICard>) {
@@ -81,6 +88,11 @@ export const gameSlice = createSlice({
         ) {
           card.completed = true;
           card.opened = false;
+          state.gameStatus.check = SCORING;
+          localStorage.setItem(
+            LS_GS_KEY,
+            JSON.stringify(state.gameStatus.check)
+          );
           localStorage.setItem(LS_CRDS_KEY, JSON.stringify(cards));
           return;
         } else {
@@ -90,12 +102,50 @@ export const gameSlice = createSlice({
         }
       }
     },
-    refreshCards(state) {
-      state.cards=CardsInitial;
-      state.gameStatus.turn = true;
-      state.gameStatus.check = "play";
+    quitGame(state) {
+      state.cards = CardsInitial;
+      state.gameStatus.check = PLAYING_DICES;
+      state.players = PlayerInitialState;
+      localStorage.setItem(LS_PLRS_KEY, JSON.stringify(state.players));
       localStorage.setItem(LS_CRDS_KEY, JSON.stringify(state.cards));
+      localStorage.setItem(LS_GS_KEY, JSON.stringify(state.gameStatus.check));
     },
+
+    // Scoring
+    handleScoring(state, action: PayloadAction<IPlayer>) {
+      const winner = state.players.find((p) => p.id === action.payload.id);
+      if (winner) {
+        winner.points++;
+        state.gameStatus.check = PLAYING_DICES;
+        const prevPlayer = state.players.find((p) => p.turn);
+        if (prevPlayer) {
+          const nextPlayer = state.players.find(
+            (p) => p.id === prevPlayer.id + 1
+          );
+          if (!nextPlayer) {
+            prevPlayer.turn = false;
+            state.players[0].turn = true;
+          } else {
+            prevPlayer.turn = false;
+            nextPlayer.turn = true;
+          }
+        }
+        localStorage.setItem(LS_PLRS_KEY, JSON.stringify(state.players));
+        localStorage.setItem(LS_GS_KEY, JSON.stringify(state.gameStatus.check));
+        const tableCards = state.cards.filter((el) => el.completed === false);
+        const lastCard = tableCards[1]
+        console.log(tableCards);
+        if (!lastCard) {
+          state.gameStatus.check = END_GAME;
+          localStorage.setItem(
+            LS_GS_KEY,
+            JSON.stringify(state.gameStatus.check)
+          );
+        }
+      } else console.error("Произошла ошибка при начеслении очков.");
+    },
+
+    // Dices
     layingDices(state) {
       state.activeDices = startDicesInitial;
       localStorage.setItem(LS_ADCS_KEY, JSON.stringify(state.activeDices));
@@ -130,18 +180,18 @@ export const gameSlice = createSlice({
           );
           return check;
         };
-
+        if (activeDices.mainColorDice === "./axi_logo.png") {
+          return getData();
+        }
         while (handlerCheck() !== false) {
           getData();
         }
       } else {
         getData();
       }
-
-      return localStorage.setItem(
-        LS_ADCS_KEY,
-        JSON.stringify(state.activeDices)
-      );
+      state.gameStatus.check = FINDING_CAT;
+      localStorage.setItem(LS_GS_KEY, JSON.stringify(state.gameStatus.check));
+      localStorage.setItem(LS_ADCS_KEY, JSON.stringify(state.activeDices));
     },
   },
 });
