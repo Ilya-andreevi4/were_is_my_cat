@@ -90,10 +90,7 @@ export const gameSlice = createSlice({
       }
     },
     refreshCards(state) {
-      state.cards.forEach((c) => {
-        c.completed = false;
-        c.opened = false;
-      });
+      state.cards=CardsInitial;
       state.gameStatus.turn = true;
       state.gameStatus.check = "play";
       localStorage.setItem(LS_CRDS_KEY, JSON.stringify(state.cards));

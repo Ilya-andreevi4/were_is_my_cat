@@ -70,7 +70,8 @@ const Dices = () => {
               key={idx}
               id={d.replace(/[^a-zа-яё]/gi, "")}
               onClick={() => handlePopOpen()}
-              className="w-fit h-fit mb-3 mx-auto border-2 border-y-cyan-700 border-x-blue-800 rounded-md bottom-1 bg-gradient-to-tr from-blue-300 to-cyan-400 bg-blue-500 shadow-lg hover:shadow-sm hover:scale-105 cursor-pointer"
+              className={openPop?"w-fit h-fit mb-3 mx-auto border-2 border-y-cyan-700 border-x-blue-800 rounded-md bottom-1 bg-gradient-to-tr from-blue-300 to-cyan-400 bg-blue-500 shadow-md shadow-gray-800 cursor-pointer scale-105 brightness-105"
+              :"w-fit h-fit mb-3 mx-auto border-2 border-y-cyan-700 border-x-blue-800 rounded-md bottom-1 bg-gradient-to-tr from-blue-300 to-cyan-400 bg-blue-500 shadow-sm shadow-gray-800 cursor-pointer hover:shadow-md hover:shadow-gray-800 hover:scale-105"}
             >
               <img src={d} alt="" className="w-20 h-20 lg:w-24 lg:h-24" />
             </div>
