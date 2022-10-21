@@ -43,14 +43,15 @@ const Dices = () => {
   };
 
   useEffect(() => {
-    setDiceArr(
+    if(activeDices.mainColorDice){setDiceArr(
       [
         activeDices.mainColorDice,
         activeDices.postureDice,
         activeDices.secColorDice,
       ].sort(() => Math.random() - 0.5)
     );
-    setPopper();
+    setPopper();}
+    else return
   }, [activeDices]);
 
   useEffect(() => {
@@ -63,7 +64,7 @@ const Dices = () => {
         Найди кота
         <br /> по чертам
       </h2>
-      {Object.values(diceArr).map((d, idx) => {
+      {diceArr&&Object.values(diceArr).map((d, idx) => {
         return (
           <div key={idx}>
             <div

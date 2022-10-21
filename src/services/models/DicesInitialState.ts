@@ -35,3 +35,8 @@ export const activeDicesInitial:IActiveDices ={
   mainColorDice: "./dices/dice_white.png",
   secColorDice: "./dices/dice_clear.png",
 }
+export const startDicesInitial:IActiveDices ={
+  postureDice: "./axi_logo.png",
+  mainColorDice: "./axi_logo.png",
+  secColorDice: "./axi_logo.png",
+}

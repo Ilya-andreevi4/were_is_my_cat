@@ -6,6 +6,7 @@ import { IActiveDices, IDices } from "../../models/IDices";
 import {
   activeDicesInitial,
   DicesInitial,
+  startDicesInitial,
 } from "../../models/DicesInitialState";
 import { IGameStatus } from "../../models/IGameStatus";
 
@@ -28,7 +29,7 @@ const initialState: GameState = {
   ),
   dices: DicesInitial,
   activeDices: JSON.parse(
-    localStorage.getItem(LS_ADCS_KEY) ?? JSON.stringify(DicesInitial)
+    localStorage.getItem(LS_ADCS_KEY) ?? JSON.stringify(startDicesInitial)
   ),
   gameStatus: {
     turn: true,
@@ -96,10 +97,9 @@ export const gameSlice = createSlice({
       localStorage.setItem(LS_CRDS_KEY, JSON.stringify(state.cards));
     },
     layingDices(state) {
-      state.activeDices = activeDicesInitial;
+      state.activeDices = startDicesInitial;
       localStorage.setItem(LS_ADCS_KEY, JSON.stringify(state.activeDices));
     },
-
     dicesRoll(state) {
       const activeDices = state.activeDices;
       const getData = () => {

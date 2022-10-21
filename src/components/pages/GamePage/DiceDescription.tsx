@@ -19,5 +19,5 @@ export function textDescription(t:string) {
     return "Пятнистый кот"
   } else if (t==="./dices/dice_striped.png"){
     return "Полосатый кот"
-  }else {'Кот потерялся'}
+  }else return "Кот потерялся"
 }
