@@ -122,7 +122,7 @@ export const gameSlice = createSlice({
           }
         });
       };
-      if (state.cards.filter((el) => el.completed)) {
+      if (state.cards.some((el) => el.completed)) {
         const complietedCards = state.cards.filter((el) => el.completed);
         const handlerCheck = () => {
           const check = complietedCards.some(

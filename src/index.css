@@ -5,3 +5,46 @@
 .fancy-border {
 border-radius: 55% 55% 55% 55% / 15% 15% 30% 30%
 }
+
+.popover{
+  display: inline-block;
+  background: #2563eb;
+  color: white;
+  font-weight: bold;
+  padding: 5px 10px;
+  font-size: 13px;
+  border-radius: 4px;
+  }
+  #arrow,
+#arrow::before {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: inherit;
+}
+
+#arrow {
+  visibility: hidden;
+}
+
+#arrow::before {
+  visibility: visible;
+  content: '';
+  transform: rotate(45deg);
+}
+
+.popover[data-popper-placement^='top'] > #arrow {
+  bottom: -4px;
+}
+
+.popover[data-popper-placement^='bottom'] > #arrow {
+  top: -4px;
+}
+
+.popover[data-popper-placement^='left'] > #arrow {
+  right: -4px;
+}
+
+.popover[data-popper-placement^='right'] > #arrow {
+  left: -4px;
+}

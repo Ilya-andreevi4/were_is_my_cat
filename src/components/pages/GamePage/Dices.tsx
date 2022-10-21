@@ -1,23 +1,56 @@
+import { createPopper } from "@popperjs/core";
 import { useEffect, useState } from "react";
 import { useActions } from "../../../services/hooks/actions";
 import { useAppSelector } from "../../../services/hooks/redux";
-import diceDescription from "./diceDescription";
+import { textDescription } from "./DiceDescription";
 
 const Dices = () => {
   const { activeDices } = useAppSelector((state) => state.gameReducers);
   const { dicesRoll, layingDices } = useActions();
+  const [openPop, setOpenPop] = useState(false);
   const [diceArr, setDiceArr] = useState([
     activeDices.mainColorDice,
     activeDices.postureDice,
     activeDices.secColorDice,
   ]);
+  const setPopper = () => {
+    Object.values(diceArr).forEach((d) => {
+      const diceText = d?.replace(/[^a-zа-яё]/gi, "");
+      const dice = document.querySelector("#" + diceText);
+      const popText = textDescription(d);
+      if (popText) {
+        const popper: HTMLElement | null = document.querySelector(
+          "#" + popText.replace(/[^a-zа-яё]/gi, "")
+        );
+        dice &&
+          popper &&
+          createPopper(dice, popper, {
+            placement: "left",
+            modifiers: [
+              {
+                name: "offset",
+                options: {
+                  offset: [0, 8],
+                },
+              },
+            ],
+          });
+      }
+    });
+  };
+  const handlePopOpen = () => {
+    setOpenPop(!openPop);
+  };
 
   useEffect(() => {
-    setDiceArr([
-      activeDices.mainColorDice,
-      activeDices.postureDice,
-      activeDices.secColorDice,
-    ].sort(() => Math.random() - 0.5));
+    setDiceArr(
+      [
+        activeDices.mainColorDice,
+        activeDices.postureDice,
+        activeDices.secColorDice,
+      ].sort(() => Math.random() - 0.5)
+    );
+    setPopper();
   }, [activeDices]);
 
   useEffect(() => {
@@ -26,21 +59,32 @@ const Dices = () => {
 
   return (
     <>
-      {Object.values(diceArr)
-        .map((d, idx) => {
-          return (
+      <h2 className="text-md font-extrabold font-sans text-blue-700 text-center mx-auto">
+        Найди кота
+        <br /> по чертам
+      </h2>
+      {Object.values(diceArr).map((d, idx) => {
+        return (
+          <div key={idx}>
             <div
               key={idx}
-              className="w-fit h-fit mb-3 border-2 border-y-cyan-700 border-x-blue-800 rounded-md bottom-1 bg-gradient-to-tr from-blue-300 to-cyan-400 bg-blue-500 shadow-lg hover:shadow-sm hover:scale-105 cursor-pointer"
+              id={d.replace(/[^a-zа-яё]/gi, "")}
+              onClick={() => handlePopOpen()}
+              className="w-fit h-fit mb-3 mx-auto border-2 border-y-cyan-700 border-x-blue-800 rounded-md bottom-1 bg-gradient-to-tr from-blue-300 to-cyan-400 bg-blue-500 shadow-lg hover:shadow-sm hover:scale-105 cursor-pointer"
             >
-              <img
-                src={d}
-                alt=""
-                className="w-20 h-20 lg:w-24 lg:h-24"
-              />
+              <img src={d} alt="" className="w-20 h-20 lg:w-24 lg:h-24" />
             </div>
-          );
-        })}
+            <div
+              id={textDescription(d)?.replace(/[^a-zа-яё]/gi, "")}
+              className={openPop ? "popover" : "hidden"}
+              role="tooltip"
+            >
+              {textDescription(d)}
+              <div id="arrow" className="" data-popper-arrow></div>
+            </div>
+          </div>
+        );
+      })}
 
       <button
         onClick={() => dicesRoll()}

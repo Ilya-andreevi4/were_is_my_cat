@@ -295,16 +295,5 @@ export const CardsInitial: ICard[] = [
     secColorDice: "./dices/dice_striped.png",
     opened: false,
     completed: false,
-  },
-  {
-    id: 28,
-    face: "./cards/cat_28.png",
-    back: "./cards/backcard_28.png",
-
-    postureDice: "?",
-    mainColorDice: "?",
-    secColorDice: "?",
-    opened: false,
-    completed: false,
-  },
+  }
 ];
