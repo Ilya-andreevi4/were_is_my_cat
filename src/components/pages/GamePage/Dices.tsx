@@ -96,7 +96,7 @@ const Dices = () => {
       >
         Сходить
       </button>
-      <ul className="p-1 mt-2 rounded-md bg-orange-200 shadow-sm">
+      <ul className={players?"p-1 mt-2 rounded-md bg-orange-200 shadow-sm":"hidden"}>
           {players.map((p) => {
             return (
               <li

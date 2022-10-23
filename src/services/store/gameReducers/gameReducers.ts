@@ -93,7 +93,7 @@ export const gameSlice = createSlice({
             state.gameStatus.check = SCORING;
           } else {
             state.gameStatus.check = PLAYING_DICES;
-            state.players[0].points++;
+            state.players[0] && state.players[0].points++;
             const tableCards = state.cards.filter(
               (el) => el.completed === false
             );
@@ -110,6 +110,7 @@ export const gameSlice = createSlice({
             JSON.stringify(state.gameStatus.check)
           );
           localStorage.setItem(LS_CRDS_KEY, JSON.stringify(cards));
+          localStorage.setItem(LS_PLRS_KEY, JSON.stringify(state.players));
           return;
         } else {
           card.opened = false;
