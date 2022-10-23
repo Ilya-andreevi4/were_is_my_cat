@@ -12,7 +12,8 @@ function GamePage() {
   const { cards, players, gameStatus } = useAppSelector(
     (state) => state.gameReducers
   );
-  const { layingCards, openCard, checkCard, handleScoring, quitGame } = useActions();
+  const { layingCards, openCard, checkCard, handleScoring, quitGame } =
+    useActions();
   const [activePlayer, setActivePlayer] = useState<IPlayer>();
   const [scoringOpen, setScoringOpen] = useState(false);
   const [endGameOpen, setEndGameOpen] = useState(false);
@@ -103,30 +104,34 @@ function GamePage() {
       </Settings>
       <Settings active={endGameOpen} setActive={setEndGameOpen}>
         <h1>Поздравляю! Вы нашли всех котов!</h1>
-        Итоговый счёт:
-        <ul>
-          {Object.values(players)
-            .sort((a, b) => {
-              if (b.points > a.points) {
-                return 1;
-              }
-              if (b.points < a.points) {
-                return -1;
-              }
-              return 0;
-            })
-            .map((p) => {
-              return (
-                <li
-                  key={p.id}
-                  onClick={() => handleScoring(p)}
-                  className="flex z-10 justify-center flex-row mx-auto my-3 text-center text-lg font-bold font-sans text-white px-2 py-0 w-fit rounded-md  bg-blue-600 border-2 cursor-pointer hover:scale-105"
-                >
-                  {p.name} <br /> Баллов: {p.points}
-                </li>
-              );
-            })}
-        </ul>
+        {players.length && (
+          <>
+            <h1>Итоговый счёт:</h1>
+            <ul>
+              {Object.values(players)
+                .sort((a, b) => {
+                  if (b.points > a.points) {
+                    return 1;
+                  }
+                  if (b.points < a.points) {
+                    return -1;
+                  }
+                  return 0;
+                })
+                .map((p) => {
+                  return (
+                    <li
+                      key={p.id}
+                      onClick={() => handleScoring(p)}
+                      className="flex z-10 justify-center flex-row mx-auto my-3 text-center text-lg font-bold font-sans text-white px-2 py-0 w-fit rounded-md  bg-blue-600 border-2 cursor-pointer hover:scale-105"
+                    >
+                      {p.name} <br /> Баллов: {p.points}
+                    </li>
+                  );
+                })}
+            </ul>
+          </>
+        )}
         <Link
           to="/"
           onClick={() => handleQuit()}
