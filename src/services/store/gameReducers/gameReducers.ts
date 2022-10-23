@@ -88,7 +88,23 @@ export const gameSlice = createSlice({
         ) {
           card.completed = true;
           card.opened = false;
-          state.gameStatus.check = SCORING;
+
+          if (state.players.length > 1) {
+            state.gameStatus.check = SCORING;
+          } else {
+            state.gameStatus.check = PLAYING_DICES;
+            state.players[0].points++;
+            const tableCards = state.cards.filter(
+              (el) => el.completed === false
+            );
+            if (tableCards.length === 0) {
+              state.gameStatus.check = END_GAME;
+              localStorage.setItem(
+                LS_GS_KEY,
+                JSON.stringify(state.gameStatus.check)
+              );
+            } else console.error("Произошла ошибка при начеслении очков.");
+          }
           localStorage.setItem(
             LS_GS_KEY,
             JSON.stringify(state.gameStatus.check)
@@ -133,16 +149,14 @@ export const gameSlice = createSlice({
         localStorage.setItem(LS_PLRS_KEY, JSON.stringify(state.players));
         localStorage.setItem(LS_GS_KEY, JSON.stringify(state.gameStatus.check));
         const tableCards = state.cards.filter((el) => el.completed === false);
-        const lastCard = tableCards[1]
-        console.log(tableCards);
-        if (!lastCard) {
+        if (tableCards.length === 0) {
           state.gameStatus.check = END_GAME;
           localStorage.setItem(
             LS_GS_KEY,
             JSON.stringify(state.gameStatus.check)
           );
-        }
-      } else console.error("Произошла ошибка при начеслении очков.");
+        } else console.error("Произошла ошибка при начеслении очков.");
+      }
     },
 
     // Dices
