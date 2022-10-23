@@ -13,7 +13,7 @@ function StartPage() {
         <h1 className="mx-auto mb-6 z-10 text-6xl tracking-tighter font-extrabold font-sans text-white">
           Где мой кот?
         </h1>
-        <h1 className="text-center text-inherit z-10 mx-auto mb-10 text-2xl font-bold font-sans text-white">
+        <h1 className="text-center z-10 mx-auto mb-10 text-2xl font-bold font-sans text-white">
           Цель игры – первым найти своего кота,
           <br />
           проявив наблюдательность и скорость реакции.
