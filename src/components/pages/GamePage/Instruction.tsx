@@ -32,7 +32,7 @@ export default function Instruction() {
               <br />
               <span className="text-md text left">
                 Если вам трудно разобрать, что выпавшие кубики означают, можно
-                нажать на них и выплывут подсказки.
+                нажать на кубики и выплывут подсказки.
               </span>
             </h2>
             {/* <div className="bg-black w-10 h-10" /> */}
