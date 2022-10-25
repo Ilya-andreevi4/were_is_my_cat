@@ -3,12 +3,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { useActions } from "../../../services/hooks/actions";
 
 export default function Instruction() {
-  const { instructionOff } =
-  useActions();
 
   return (
     <>
-    <button className="fixed top-7 right-4 bg-[url('./cancel.svg')] bg-contain w-6 h-6" onClick={()=>instructionOff()}/>
       <Swiper
         pagination={{
           type: "progressbar",
@@ -18,7 +15,7 @@ export default function Instruction() {
         className="mySwiper"
       >
         <SwiperSlide>
-          <div className="grid grid-cols-1 gap-3 my-4 px-4">
+          <div className="grid grid-cols-1 gap-3 my-4 px-4 justify-center">
             <h1 className="text-xl">Инструкция к игре:</h1>
             {/* <div className="grid grid-cols-2 gap-3 my-4"> */}
             <h2 className="text-left px-4">

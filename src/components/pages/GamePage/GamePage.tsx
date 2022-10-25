@@ -36,6 +36,7 @@ function GamePage() {
   useEffect(() => {
     setActivePlayer(players.find((p) => p.turn));
   }, [gameStatus]);
+
   useEffect(() => {
     if (gameStatus.check === SCORING) {
       setScoringOpen(true);
@@ -46,19 +47,14 @@ function GamePage() {
       setEndGameOpen(true);
     }
   }, [gameStatus.check]);
+
   useEffect(() => {
     layingCards();
   }, []);
-  useEffect(() => {
-    if (gameStatus.firstGame === true) {
-      setInstructionOpen(true);
-    } else{
-      setInstructionOpen(false);
-    }
-  }, [gameStatus.firstGame]);
 
   return (
     <div className="bg-white h-fit w-screen min-h-screen">
+      <button className="absolute top-16 right-8 bg-[url('./question.svg')] bg-contain w-10 h-10 hover:scale-105" onClick={()=>setInstructionOpen(true)}/>
       <div className="flex flex-col justify-between left-0 mx-auto my-auto top-[5%] h-[50%]">
         <div className="flex text-white justify-center text-center pb-1 px-2 font-sans text-xl font-extrabold mx-auto mt-4 bg-gradient-to-tr from-orange-400 to-orange-500 bg-orange-400 w-fit h-10 fancy-border transition ease-in-out delay-1500 shadow-md hover:shadow-sm">
           <h2 className="my-auto">

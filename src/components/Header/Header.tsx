@@ -13,21 +13,21 @@ export default function Header() {
   };
 
   return (
-    <nav className="flex justify-between items-center h-12 w-full py-2 px-5 shadow-lg bg-gradient-to-tr from-blue-500 to-blue-600 bg-blue-500 text-white ">
+    <nav className="flex justify-between justify-items-center items-center h-12 w-full py-2 px-5 shadow-lg bg-gradient-to-tr from-blue-500 to-blue-600 bg-blue-500 text-white ">
       <img src="./axi_logo.png" alt="Axioma" className="mx-2 h-10 w-10 z-10" />
 
       <Settings active={modalActive} setActive={setModalActive}>
-        <h1>Настройки</h1>
+        <h1 className="mx-auto">Настройки</h1>
 
         <img
           src="./instruction.png"
           alt="Инструкция"
-          className=" h-fit w-fit scale-110"
+          className=" h-fit w-fit"
         />
         <Link
           to="/"
           onClick={() => handleQuit()}
-          className="px-2 py-0 mx-auto bg-red-600 text-white w-fit rounded-md shadow-xl hover:bg-red-500 hover:shadow-sm"
+          className="px-2 py-0 text-md mx-auto bg-red-600 text-white w-fit rounded-md shadow-xl hover:bg-red-500 hover:shadow-sm"
         >
           Выход в главное меню
         </Link>

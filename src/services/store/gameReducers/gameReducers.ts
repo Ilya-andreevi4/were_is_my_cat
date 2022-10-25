@@ -121,11 +121,6 @@ export const gameSlice = createSlice({
       }
     },
 
-    // GameSettings
-    instructionOff(state){
-      state.gameStatus.firstGame = false;
-      localStorage.setItem(LS_FG_KEY, JSON.stringify(state.gameStatus.firstGame));
-    },
     quitGame(state) {
       state.cards = CardsInitial;
       state.gameStatus.check = PLAYING_DICES;
