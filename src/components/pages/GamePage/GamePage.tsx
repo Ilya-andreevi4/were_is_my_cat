@@ -6,7 +6,7 @@ import { ICard } from "../../../services/models/ICard";
 import { IPlayer } from "../../../services/models/IPlayer";
 import Settings from "../../Settings/Settings";
 import Dices from "./Dices";
-import Scoring from "./Scoring";
+import Instruction from "./Instruction";
 
 function GamePage() {
   const { cards, players, gameStatus } = useAppSelector(
@@ -15,6 +15,7 @@ function GamePage() {
   const { layingCards, openCard, checkCard, handleScoring, quitGame } =
     useActions();
   const [activePlayer, setActivePlayer] = useState<IPlayer>();
+  const [instructionOpen, setInstructionOpen] = useState(false);
   const [scoringOpen, setScoringOpen] = useState(false);
   const [endGameOpen, setEndGameOpen] = useState(false);
   const PLAYING_DICES = "playingDice";
@@ -47,6 +48,9 @@ function GamePage() {
   }, [gameStatus.check]);
   useEffect(() => {
     layingCards();
+    if (gameStatus.firstGame === true) {
+      setInstructionOpen(true);
+    }
   }, []);
 
   return (
@@ -86,6 +90,9 @@ function GamePage() {
         </div>
       </div>
 
+      <Settings active={instructionOpen} setActive={setInstructionOpen}>
+        <Instruction />
+      </Settings>
       <Settings active={scoringOpen} setActive={setScoringOpen}>
         <h1>Нажмите на того, кто нашёл кота первым?</h1>
         <ul>

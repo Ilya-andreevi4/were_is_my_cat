@@ -14,6 +14,7 @@ const LS_PLRS_KEY = "react_plrs_keys";
 const LS_CRDS_KEY = "react_crds_keys";
 const LS_ADCS_KEY = "react_adcs_keys";
 const LS_GS_KEY = "react_gs_keys";
+const LS_FG_KEY = "react_fg_keys";
 const PLAYING_DICES = "playingDice";
 const FINDING_CAT = "findingCat";
 const SCORING = "scoring";
@@ -39,7 +40,7 @@ const initialState: GameState = {
     localStorage.getItem(LS_ADCS_KEY) ?? JSON.stringify(startDicesInitial)
   ),
   gameStatus: {
-    turn: true,
+    firstGame: JSON.parse(localStorage.getItem(LS_FG_KEY)??'true'),
     check: localStorage.getItem(LS_GS_KEY) ?? JSON.stringify(PLAYING_DICES),
   },
 };
