@@ -40,7 +40,7 @@ const initialState: GameState = {
     localStorage.getItem(LS_ADCS_KEY) ?? JSON.stringify(startDicesInitial)
   ),
   gameStatus: {
-    firstGame: JSON.parse(localStorage.getItem(LS_FG_KEY)??'true'),
+    firstGame: JSON.parse(localStorage.getItem(LS_FG_KEY)??"true"),
     check: localStorage.getItem(LS_GS_KEY) ?? JSON.stringify(PLAYING_DICES),
   },
 };
@@ -119,6 +119,12 @@ export const gameSlice = createSlice({
           return;
         }
       }
+    },
+
+    // GameSettings
+    instructionOff(state){
+      state.gameStatus.firstGame = false;
+      localStorage.setItem(LS_FG_KEY, JSON.stringify(state.gameStatus.firstGame));
     },
     quitGame(state) {
       state.cards = CardsInitial;

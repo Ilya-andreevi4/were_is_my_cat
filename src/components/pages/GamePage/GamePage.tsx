@@ -48,10 +48,14 @@ function GamePage() {
   }, [gameStatus.check]);
   useEffect(() => {
     layingCards();
+  }, []);
+  useEffect(() => {
     if (gameStatus.firstGame === true) {
       setInstructionOpen(true);
+    } else{
+      setInstructionOpen(false);
     }
-  }, []);
+  }, [gameStatus.firstGame]);
 
   return (
     <div className="bg-white h-fit w-screen min-h-screen">
