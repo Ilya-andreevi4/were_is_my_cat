@@ -35,7 +35,7 @@ export default function Instruction() {
                 </span>
               </h2>
               <div className="flex-none bg-center relative h-80 w-40 mr-6 my-auto border-2 border-gray-400">
-                <img src="./instruction_1.png" alt="" className="" />
+                <img src="./instruction_2.png" alt="" className="" />
               </div>
             </div>
           </div>
