@@ -80,3 +80,12 @@ border-radius: 55% 55% 55% 55% / 15% 15% 30% 30%
   height: 100%;
   object-fit: cover;
 }
+
+.hover-image{
+  background-image: url('./instruction_1.png');
+  background: contain;
+  background: no-repeate;
+}
+.hover-image:hover{
+  background-image: url('./instruction_2.png');
+}

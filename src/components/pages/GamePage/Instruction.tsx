@@ -34,7 +34,8 @@ export default function Instruction() {
                   нажать на кубики и выплывут подсказки.
                 </span>
               </h2>
-              <div className="flex-none relative bg-[url('./instruction_1.png')] bg-cover h-72 w-40 hover:bg-[url('./instruction_2.png')] mr-6 my-auto border-2 border-gray-400" />
+              <div className="flex-none hover-image bg-center relative h-80 w-40  mr-6 my-auto border-2 border-gray-400">
+              </div>
             </div>
           </div>
         </SwiperSlide>
@@ -60,7 +61,7 @@ export default function Instruction() {
             <img
               src="./instruction_3.png"
               alt="Игровое поле"
-              className="h-fit"
+              className="h-fit cursor-pointer active:scale-110 border-2 border-gray-400"
             />
           </div>
         </SwiperSlide>
