@@ -3,7 +3,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { useActions } from "../../../services/hooks/actions";
 
 export default function Instruction() {
-
   return (
     <>
       <Swiper
@@ -17,31 +16,31 @@ export default function Instruction() {
         <SwiperSlide>
           <div className="grid grid-cols-1 gap-3 my-4 px-4 justify-center">
             <h1 className="text-xl">Инструкция к игре:</h1>
-            {/* <div className="grid grid-cols-2 gap-3 my-4"> */}
-            <h2 className="text-left px-4">
-              Первый игрок, нажав на кнопку "Сходить", выбрасывает 3 кубика.
-              <br />
-              <br />
-              1. Кубик отвечает за позу кота
-              <br />
-              2. Кубик отвечает за цвет кота
-              <br />
-              3. Кубик отвечает за то, есть ли у кота пятна или полоски, или их
-              нет
-              <br />
-              <br />
-              <span className="text-md text left">
-                Если вам трудно разобрать, что выпавшие кубики означают, можно
-                нажать на кубики и выплывут подсказки.
-              </span>
-            </h2>
-            {/* <div className="bg-black w-10 h-10" /> */}
-            {/* </div> */}
+            <div className="flex my-4">
+              <h2 className="flex-auto text-left px-4">
+                Первый игрок, нажав на кнопку "Сходить", выбрасывает 3 кубика.
+                <br />
+                <br />
+                1. Кубик отвечает за позу кота
+                <br />
+                2. Кубик отвечает за цвет кота
+                <br />
+                3. Кубик отвечает за то, есть ли у кота пятна или полоски, или
+                их нет
+                <br />
+                <br />
+                <span className="text-md text left">
+                  Если вам трудно разобрать, что означают выпавшие кубики, можно
+                  нажать на кубики и выплывут подсказки.
+                </span>
+              </h2>
+              <div className="flex-none relative bg-[url('./instruction_1.png')] bg-cover h-72 w-40 hover:bg-[url('./instruction_2.png')] mr-6 my-auto border-2 border-gray-400" />
+            </div>
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="grid grid-cols-1 gap-3 max-w-[80%] my-4 px-4">
-            <h2 className="text-left">
+          <div className="flex max-w-[80%] my-4 px-4">
+            <h2 className="flex-auto text-left">
               Все участники одновременно начинают искать нужного персонажа на
               картах.
               <br />
@@ -57,8 +56,17 @@ export default function Instruction() {
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="grid grid-cols-1 gap-3 max-w-[80%] my-4 px-4">
-            <h2 className="text-left">
+          <div className="w-[90%] mx-8 my-8">
+            <img
+              src="./instruction_3.png"
+              alt="Игровое поле"
+              className="h-fit"
+            />
+          </div>
+        </SwiperSlide>
+        <SwiperSlide>
+          <div className="flex max-w-[80%] my-4 px-4">
+            <h2 className="flex-auto text-left">
               Если игрок оказался прав, он получает 1 балл, а карта найденного
               кота исчезает.
               <br />
