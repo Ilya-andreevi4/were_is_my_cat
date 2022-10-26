@@ -21,9 +21,9 @@ const Settings: FC<SettingsProps> = ({ active, setActive, children }) => {
         onClick={(e) => e.stopPropagation()}
       >
         <button
-          className="fixed right-8 top-12 z-40 bg-[url('./cancel.svg')] bg-contain w-8 h-8"
+          className="fixed right-8 top-12 z-40"
           onClick={() => setActive(false)}
-        />
+        > <img src="./cancel.svg" alt="Закрыть окно" className="w-8 h-8"/></button>
         {children}
       </div>
     </div>

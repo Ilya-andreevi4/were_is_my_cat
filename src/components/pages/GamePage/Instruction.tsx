@@ -34,7 +34,8 @@ export default function Instruction() {
                   нажать на кубики и выплывут подсказки.
                 </span>
               </h2>
-              <div className="flex-none hover-image bg-center relative h-80 w-40  mr-6 my-auto border-2 border-gray-400">
+              <div className="flex-none bg-center relative h-80 w-40 mr-6 my-auto border-2 border-gray-400">
+                <img src="./instruction_1.png" alt="" className="" />
               </div>
             </div>
           </div>
