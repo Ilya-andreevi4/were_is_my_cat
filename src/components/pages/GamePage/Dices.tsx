@@ -80,7 +80,7 @@ const Dices = () => {
             </div>
             <div
               id={textDescription(d)?.replace(/[^a-zа-яё]/gi, "")}
-              className={openPop&&d!=="./axi_logo.png" ? "popover max-w-[120px]" : "hidden"}
+              className={openPop&&d!=="./axi_logo.png" ? "popover max-w-[200px]" : "hidden"}
               role="tooltip"
             >
               {textDescription(d)}
