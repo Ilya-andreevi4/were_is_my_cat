@@ -23,7 +23,9 @@ const Settings: FC<SettingsProps> = ({ active, setActive, children }) => {
         <button
           className="fixed right-8 top-12 z-40"
           onClick={() => setActive(false)}
-        > <img src="./cancel.svg" alt="Закрыть окно" className="w-8 h-8"/></button>
+        >
+          <img src="./cancel.svg" alt="Закрыть окно" className="w-8 h-8"/>
+        </button>
         {children}
       </div>
     </div>
