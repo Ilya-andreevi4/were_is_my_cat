@@ -188,19 +188,19 @@ export const gameSlice = createSlice({
       };
       if (state.cards.some((el) => el.completed)) {
         const complietedCards = state.cards.filter((el) => el.completed);
-        const handlerCheck = () => {
-          const check = complietedCards.some(
+        const handlerCheckDices = () => {
+          const checkDices = complietedCards.some(
             (card) =>
               card.mainColorDice === activeDices.mainColorDice &&
               card.postureDice === activeDices.postureDice &&
               card.secColorDice === activeDices.secColorDice
           );
-          return check;
+          return checkDices;
         };
         if (activeDices.mainColorDice === "./axi_logo.png") {
           return getData();
         }
-        while (handlerCheck() !== false) {
+        while (handlerCheckDices() !== false) {
           getData();
         }
       } else {
