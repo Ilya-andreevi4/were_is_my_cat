@@ -1,8 +1,9 @@
+import { memo } from "react";
 import { Navigation, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { useActions } from "../../../services/hooks/actions";
 
-export default function Instruction() {
+const Instruction = memo(()=> {
+  console.log("Instruction render");
   return (
     <>
       <Swiper
@@ -90,4 +91,5 @@ export default function Instruction() {
       </Swiper>
     </>
   );
-}
+});
+export default Instruction;

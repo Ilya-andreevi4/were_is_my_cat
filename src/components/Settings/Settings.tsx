@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, memo } from "react";
 
 interface SettingsProps {
   active: boolean;
@@ -7,6 +7,7 @@ interface SettingsProps {
 }
 
 const Settings: FC<SettingsProps> = ({ active, setActive, children }) => {
+  console.log("settings render");
   return (
     <div
       className={
@@ -30,5 +31,5 @@ const Settings: FC<SettingsProps> = ({ active, setActive, children }) => {
       </div>
     </div>
   );
-};
-export default Settings;
+}
+export default memo(Settings);

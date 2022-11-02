@@ -11,6 +11,7 @@ export default function Header() {
     quitGame();
     setModalActive(false);
   };
+  console.log("Header render");
 
   return (
     <nav className="flex justify-between justify-items-center items-center h-12 w-full py-2 px-5 shadow-lg bg-gradient-to-tr from-blue-500 to-blue-600 bg-blue-500 text-white ">

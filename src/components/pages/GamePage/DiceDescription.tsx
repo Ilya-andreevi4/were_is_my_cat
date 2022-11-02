@@ -1,6 +1,5 @@
-import React, { FC } from 'react'
 
-export function textDescription(t:string) {
+export default function diceDescription(t:string) {
   if(t==="./dices/dice_sit.png") {
     return "Кот сидит"
   } else if (t==="./dices/dice_stand.png"){

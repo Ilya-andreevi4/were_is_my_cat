@@ -9,15 +9,18 @@ import Dices from "./Dices";
 import Instruction from "./Instruction";
 
 function GamePage() {
+
   const { cards, players, gameStatus } = useAppSelector(
     (state) => state.gameReducers
   );
   const { layingCards, openCard, checkCard, handleScoring, quitGame } =
     useActions();
+
   const [activePlayer, setActivePlayer] = useState<IPlayer>();
   const [instructionOpen, setInstructionOpen] = useState(false);
   const [scoringOpen, setScoringOpen] = useState(false);
   const [endGameOpen, setEndGameOpen] = useState(false);
+
   const PLAYING_DICES = "playingDice";
   const SCORING = "scoring";
   const END_GAME = "endGame";

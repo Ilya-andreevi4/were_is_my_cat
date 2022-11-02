@@ -1,14 +1,14 @@
 import { createPopper } from "@popperjs/core";
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { useActions } from "../../../services/hooks/actions";
 import { useAppSelector } from "../../../services/hooks/redux";
-import { textDescription } from "./DiceDescription";
+import diceDescription from "./DiceDescription";
 
-const Dices = () => {
+function Dices() {
   const { players, activeDices } = useAppSelector(
     (state) => state.gameReducers
   );
-  const { dicesRoll, layingDices  } = useActions();
+  const { dicesRoll, layingDices } = useActions();
   const [openPop, setOpenPop] = useState(false);
   const [diceArr, setDiceArr] = useState([
     activeDices.mainColorDice,
@@ -19,7 +19,7 @@ const Dices = () => {
     Object.values(diceArr).forEach((d) => {
       const diceText = d?.replace(/[^a-zа-яё]/gi, "");
       const dice = document.querySelector("#" + diceText);
-      const popText = textDescription(d);
+      const popText = diceDescription(d);
       if (popText) {
         const popper: HTMLElement | null = document.querySelector(
           "#" + popText.replace(/[^a-zа-яё]/gi, "")
@@ -44,16 +44,19 @@ const Dices = () => {
     setOpenPop(!openPop);
   };
 
+  console.log("dices render");
+
   useEffect(() => {
-    if(activeDices.mainColorDice){setDiceArr(
-      [
-        activeDices.mainColorDice,
-        activeDices.postureDice,
-        activeDices.secColorDice,
-      ].sort(() => Math.random() - 0.5)
-    );
-    setPopper();}
-    else return
+    if (activeDices.mainColorDice) {
+      setDiceArr(
+        [
+          activeDices.mainColorDice,
+          activeDices.postureDice,
+          activeDices.secColorDice,
+        ].sort(() => Math.random() - 0.5)
+      );
+      setPopper();
+    } else return;
   }, [activeDices]);
 
   useEffect(() => {
@@ -66,29 +69,37 @@ const Dices = () => {
         Найди кота
         <br /> по чертам
       </h2>
-      {diceArr&&Object.values(diceArr).map((d, idx) => {
-        return (
-          <div key={idx}>
-            <div
-              key={idx}
-              id={d.replace(/[^a-zа-яё]/gi, "")}
-              onClick={() => handlePopOpen()}
-              className={openPop?"w-fit h-fit mb-3 mx-auto border-2 border-y-cyan-700 border-x-blue-800 rounded-md bottom-1 bg-gradient-to-tr from-blue-300 to-cyan-400 bg-blue-500 shadow-md shadow-gray-800 cursor-pointer scale-105 brightness-105"
-              :"w-fit h-fit mb-3 mx-auto border-2 border-y-cyan-700 border-x-blue-800 rounded-md bottom-1 bg-gradient-to-tr from-blue-300 to-cyan-400 bg-blue-500 shadow-sm shadow-gray-800 cursor-pointer hover:shadow-md hover:shadow-gray-800 hover:scale-105"}
-            >
-              <img src={d} alt="" className="w-20 h-20 lg:w-24 lg:h-24"/>
+      {diceArr &&
+        Object.values(diceArr).map((d, idx) => {
+          return (
+            <div key={idx}>
+              <div
+                key={idx}
+                id={d.replace(/[^a-zа-яё]/gi, "")}
+                onClick={() => handlePopOpen()}
+                className={
+                  openPop
+                    ? "w-fit h-fit mb-3 mx-auto border-2 border-y-cyan-700 border-x-blue-800 rounded-md bottom-1 bg-gradient-to-tr from-blue-300 to-cyan-400 bg-blue-500 shadow-md shadow-gray-800 cursor-pointer scale-105 brightness-105"
+                    : "w-fit h-fit mb-3 mx-auto border-2 border-y-cyan-700 border-x-blue-800 rounded-md bottom-1 bg-gradient-to-tr from-blue-300 to-cyan-400 bg-blue-500 shadow-sm shadow-gray-800 cursor-pointer hover:shadow-md hover:shadow-gray-800 hover:scale-105"
+                }
+              >
+                <img src={d} alt="" className="w-20 h-20 lg:w-24 lg:h-24" />
+              </div>
+              <div
+                id={diceDescription(d)?.replace(/[^a-zа-яё]/gi, "")}
+                className={
+                  openPop && d !== "./axi_logo.png"
+                    ? "popover max-w-[200px]"
+                    : "hidden"
+                }
+                role="tooltip"
+              >
+                {diceDescription(d)}
+                <div id="arrow" className="" data-popper-arrow></div>
+              </div>
             </div>
-            <div
-              id={textDescription(d)?.replace(/[^a-zа-яё]/gi, "")}
-              className={openPop&&d!=="./axi_logo.png" ? "popover max-w-[200px]" : "hidden"}
-              role="tooltip"
-            >
-              {textDescription(d)}
-              <div id="arrow" className="" data-popper-arrow></div>
-            </div>
-          </div>
-        );
-      })}
+          );
+        })}
 
       <button
         onClick={() => dicesRoll()}
@@ -96,19 +107,26 @@ const Dices = () => {
       >
         Сходить
       </button>
-      <ul className={players.length?"p-1 mt-2 rounded-md bg-orange-200 shadow-sm":"hidden"}>
-          {players.map((p) => {
-            return (
-              <li
-                key={p.id}
-                className="flex z-10 justify-center flex-row mx-auto my-4 text-center text-sm font-bold font-sans text-stone-900"
-              >
-                {p.name} <br/>баллов: {p.points}
-              </li>
-            );
-          })}
-        </ul>
+      <ul
+        className={
+          players.length
+            ? "p-1 mt-2 rounded-md bg-orange-200 shadow-sm"
+            : "hidden"
+        }
+      >
+        {players.map((p) => {
+          return (
+            <li
+              key={p.id}
+              className="flex z-10 justify-center flex-row mx-auto my-4 text-center text-sm font-bold font-sans text-stone-900"
+            >
+              {p.name} <br />
+              баллов: {p.points}
+            </li>
+          );
+        })}
+      </ul>
     </>
   );
 };
-export default Dices;
+export default memo(Dices);
