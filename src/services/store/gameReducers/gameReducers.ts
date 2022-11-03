@@ -104,7 +104,7 @@ export const gameSlice = createSlice({
                 LS_GS_KEY,
                 JSON.stringify(state.gameStatus.check)
               );
-            } else console.error("Произошла ошибка при начеслении очков.");
+            }
           }
           localStorage.setItem(
             LS_GS_KEY,

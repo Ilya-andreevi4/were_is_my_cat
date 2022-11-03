@@ -1,5 +1,5 @@
 import { createPopper } from "@popperjs/core";
-import { memo, useEffect, useState } from "react";
+import { lazy, memo, useEffect, useState } from "react";
 import { useActions } from "../../../services/hooks/actions";
 import { useAppSelector } from "../../../services/hooks/redux";
 import diceDescription from "./DiceDescription";

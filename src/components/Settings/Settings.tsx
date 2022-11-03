@@ -1,6 +1,6 @@
 import { FC, memo } from "react";
 
-interface SettingsProps {
+export interface SettingsProps {
   active: boolean;
   setActive: any;
   children: any;

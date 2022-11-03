@@ -1,11 +1,9 @@
-import { memo } from "react";
 import { Navigation, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-const Instruction = memo(()=> {
+export default function Instruction() {
   console.log("Instruction render");
   return (
-    <>
       <Swiper
         pagination={{
           type: "progressbar",
@@ -89,7 +87,5 @@ const Instruction = memo(()=> {
           </div>
         </SwiperSlide>
       </Swiper>
-    </>
   );
-});
-export default Instruction;
+};

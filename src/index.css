@@ -11,7 +11,7 @@ border-radius: 55% 55% 55% 55% / 15% 15% 30% 30%
   background: #2563eb;
   color: white;
   font-weight: bold;
-  padding: 5px 8px;
+  padding: 2px 6px;
   font-size: 12px;
   border-radius: 4px;
   }
@@ -48,6 +48,8 @@ border-radius: 55% 55% 55% 55% / 15% 15% 30% 30%
 .popover[data-popper-placement^='right'] > #arrow {
   left: -4px;
 }
+
+// Swiper
 
 .swiper {
   width: 100%;
