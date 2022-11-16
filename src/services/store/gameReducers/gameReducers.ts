@@ -40,7 +40,7 @@ const initialState: GameState = {
     localStorage.getItem(LS_ADCS_KEY) ?? JSON.stringify(startDicesInitial)
   ),
   gameStatus: {
-    firstGame: JSON.parse(localStorage.getItem(LS_FG_KEY)??"true"),
+    firstGame: JSON.parse(localStorage.getItem(LS_FG_KEY) ?? "true"),
     check: localStorage.getItem(LS_GS_KEY) ?? JSON.stringify(PLAYING_DICES),
   },
 };
@@ -167,45 +167,18 @@ export const gameSlice = createSlice({
       state.activeDices = startDicesInitial;
       localStorage.setItem(LS_ADCS_KEY, JSON.stringify(state.activeDices));
     },
+
     dicesRoll(state) {
-      const activeDices = state.activeDices;
       const getData = () => {
-        state.dices.forEach((d) => {
-          if (d.mainColorDice[1]) {
-            const random = Math.floor(Math.random() * 3);
-            const mainColor = d.mainColorDice[random];
-            activeDices.mainColorDice = mainColor.url;
-          } else if (d.postureDice[1]) {
-            const random = Math.floor(Math.random() * 3);
-            const posture = d.postureDice[random];
-            activeDices.postureDice = posture.url;
-          } else if (d.secColorDice[1]) {
-            const random = Math.floor(Math.random() * 3);
-            const secColor = d.secColorDice[random];
-            activeDices.secColorDice = secColor.url;
-          }
-        });
+        const activeDices = state.activeDices;
+        const restCards = state.cards.filter((el) => !el.completed);
+        const rand = Math.floor(Math.random() * restCards.length);
+        const card = restCards[rand];
+        activeDices.mainColorDice = card.mainColorDice;
+        activeDices.secColorDice = card.secColorDice;
+        activeDices.postureDice = card.postureDice;
       };
-      if (state.cards.some((el) => el.completed)) {
-        const complietedCards = state.cards.filter((el) => el.completed);
-        const handlerCheckDices = () => {
-          const checkDices = complietedCards.some(
-            (card) =>
-              card.mainColorDice === activeDices.mainColorDice &&
-              card.postureDice === activeDices.postureDice &&
-              card.secColorDice === activeDices.secColorDice
-          );
-          return checkDices;
-        };
-        if (activeDices.mainColorDice === "./axi_logo.png") {
-          return getData();
-        }
-        while (handlerCheckDices() !== false) {
-          getData();
-        }
-      } else {
-        getData();
-      }
+      getData();
       state.gameStatus.check = FINDING_CAT;
       localStorage.setItem(LS_GS_KEY, JSON.stringify(state.gameStatus.check));
       localStorage.setItem(LS_ADCS_KEY, JSON.stringify(state.activeDices));

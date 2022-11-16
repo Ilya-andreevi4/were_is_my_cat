@@ -3,19 +3,18 @@
 @tailwind utilities;
 
 .fancy-border {
-border-radius: 55% 55% 55% 55% / 15% 15% 30% 30%
+  border-radius: 55% 55% 55% 55% / 15% 15% 30% 30%;
 }
 
-.popover{
-  display: inline-block;
+.popover {
   background: #2563eb;
   color: white;
   font-weight: bold;
-  padding: 2px 6px;
-  font-size: 12px;
+  padding: 4px 8px;
+  font-size: 13px;
   border-radius: 4px;
-  }
-  #arrow,
+}
+#arrow,
 #arrow::before {
   position: absolute;
   width: 8px;
@@ -29,27 +28,15 @@ border-radius: 55% 55% 55% 55% / 15% 15% 30% 30%
 
 #arrow::before {
   visibility: visible;
-  content: '';
+  content: "";
   transform: rotate(45deg);
 }
 
-.popover[data-popper-placement^='top'] > #arrow {
-  bottom: -4px;
-}
-
-.popover[data-popper-placement^='bottom'] > #arrow {
-  top: -4px;
-}
-
-.popover[data-popper-placement^='left'] > #arrow {
+.popover[data-popper-placement^="left"] > #arrow {
   right: -4px;
 }
 
-.popover[data-popper-placement^='right'] > #arrow {
-  left: -4px;
-}
-
-// Swiper
+/* Swiper*/
 
 .swiper {
   width: 100%;
@@ -83,11 +70,11 @@ border-radius: 55% 55% 55% 55% / 15% 15% 30% 30%
   object-fit: cover;
 }
 
-.hover-image{
-  background-image: url('./instruction_1.png');
+.hover-image {
+  background-image: url("./instruction_1.png");
   background: contain;
   background: no-repeate;
 }
-.hover-image:hover{
-  background-image: url('./instruction_2.png');
+.hover-image:hover {
+  background-image: url("./instruction_2.png");
 }

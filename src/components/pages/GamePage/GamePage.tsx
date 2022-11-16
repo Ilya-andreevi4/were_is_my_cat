@@ -1,16 +1,14 @@
-import { Suspense, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useActions } from "../../../services/hooks/actions";
 import { useAppSelector } from "../../../services/hooks/redux";
 import { IPlayer } from "../../../services/models/IPlayer";
-import Settings, { SettingsProps } from "../../Settings/Settings";
+import Settings from "../../Settings/Settings";
 import Card from "./Card";
 import Dices from "./Dices";
 import Instruction from "./Instruction";
 
 function GamePage() {
-
-
   const { cards, players, gameStatus } = useAppSelector(
     (state) => state.gameReducers
   );
@@ -71,9 +69,7 @@ function GamePage() {
         <div className="flex flex-row">
           <div className="grid grid-cols-3 md:grid-cols-7 lg:grid-cols-10 gap-4 p-2 mx-1 md:p-6 md:mx-6 justify-between items-baseline h-fit w-[80%] ">
             {cards.map((card, idx) => {
-              return (
-                  <Card card={card} key={idx}/>
-              );
+              return <Card card={card} key={idx} />;
             })}
           </div>
 

@@ -1,10 +1,11 @@
 import { createPopper } from "@popperjs/core";
-import { lazy, memo, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useActions } from "../../../services/hooks/actions";
 import { useAppSelector } from "../../../services/hooks/redux";
 import diceDescription from "./DiceDescription";
 
 function Dices() {
+  const dicesDiv = document.getElementById("dices");
   const { players, activeDices } = useAppSelector(
     (state) => state.gameReducers
   );
@@ -40,11 +41,24 @@ function Dices() {
       }
     });
   };
+
+  const handlePopClose = () => {
+    setOpenPop(false);
+    dicesDiv?.removeEventListener("click", handlePopClose);
+  };
+
   const handlePopOpen = () => {
     setOpenPop(!openPop);
+    if (openPop) {
+      dicesDiv?.addEventListener("click", handlePopClose);
+    }
   };
 
   console.log("dices render");
+
+  // useEffect(() => {
+
+  // }, []);
 
   useEffect(() => {
     if (activeDices.mainColorDice) {
@@ -64,11 +78,7 @@ function Dices() {
   }, []);
 
   return (
-    <>
-      <h2 className="text-md font-extrabold mb-2 font-sans text-blue-700 text-center mx-auto">
-        Найди кота
-        <br /> по чертам
-      </h2>
+    <div id="dices">
       {diceArr &&
         Object.values(diceArr).map((d, idx) => {
           return (
@@ -88,9 +98,7 @@ function Dices() {
               <div
                 id={diceDescription(d)?.replace(/[^a-zа-яё]/gi, "")}
                 className={
-                  openPop && d !== "./axi_logo.png"
-                    ? "popover max-w-[200px]"
-                    : "hidden"
+                  openPop && d !== "./axi_logo.png" ? "popover" : "hidden"
                 }
                 role="tooltip"
               >
@@ -126,7 +134,7 @@ function Dices() {
           );
         })}
       </ul>
-    </>
+    </div>
   );
-};
-export default memo(Dices);
+}
+export default Dices;
