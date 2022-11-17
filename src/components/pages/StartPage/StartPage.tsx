@@ -10,7 +10,7 @@ function StartPage() {
       />
 
       <div className="flex flex-col justify-between left-0 mx-auto my-auto p-11 top-[10%] h-[50%]">
-        <h1 className="mx-auto mb-6 z-10 text-6xl tracking-tighter font-extrabold font-sans text-white">
+        <h1 className="mx-auto mb-6 z-10 text-6xl tracking-tighter font-bold font-sans text-white">
           Где мой кот?
         </h1>
         <h1 className="text-center z-10 mx-auto mb-10 text-2xl font-bold font-sans text-white">
@@ -20,7 +20,7 @@ function StartPage() {
         </h1>
         <Link
           to="/PlayersPage"
-          className="px-8 py-2 z-10 opacity-90 font-sans text-3xl bg-orange-500 text-white font-extrabold w-fit mx-auto mt-10 rounded-lg shadow-xl hover:bg-orange-600 hover:shadow-sm"
+          className="px-8 py-2 z-10 opacity-90 font-sans text-3xl bg-orange-500 text-white font-bold w-fit mx-auto mt-10 rounded-lg shadow-xl hover:bg-orange-600 hover:shadow-sm"
         >
           Начать
         </Link>

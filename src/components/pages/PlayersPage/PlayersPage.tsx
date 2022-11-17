@@ -42,7 +42,7 @@ export default function PlayersPage() {
   return (
     <>
       <div className="grid grid-cols-1 gap-4 place-content-center z-10 left-0 mx-auto p-5 h-full max-h-full">
-        <h1 className="mx-auto text-4xl tracking-tighter font-extrabold font-sans text-white">
+        <h1 className="mx-auto text-4xl tracking-tighter font-bold font-sans text-white">
           Список игроков
         </h1>
         <button
@@ -67,13 +67,13 @@ export default function PlayersPage() {
       </div>
       <div className="grid grid-cols-1">
         {warning && (
-          <h1 className="px-4 py-0 z-10 font-sans text-xl text-red-600 font-extrabold w-fit mx-auto">
+          <h1 className="px-4 py-0 z-10 font-sans text-xl text-red-600 font-bold w-fit mx-auto">
             Максимальное количество игроков - 4
           </h1>
         )}
         <Link
           to="/GamePage"
-          className="opacity-90 px-8 py-1 z-10 font-sans text-3xl bg-orange-500 text-white font-extrabold w-fit mx-auto rounded-lg shadow-xl hover:bg-orange-600 hover:shadow-sm"
+          className="opacity-90 px-8 py-1 z-10 font-sans text-3xl bg-orange-500 text-white font-bold w-fit mx-auto rounded-lg shadow-xl hover:bg-orange-600 hover:shadow-sm"
         >
           Играть
         </Link>

@@ -98,7 +98,7 @@ function Dices() {
 
       <button
         onClick={() => handleRoll()}
-        className="px-3 pt-1 pb-2 z-30 font-sans text-lg md:text-xl  bg-gradient-to-tr from-orange-400 to-orange-500 bg-orange-400 text-white font-extrabold w-fit mx-auto my-2 rounded-xl shadow-sm shadow-slate-700 hover:shadow-slate-700 hover:shadow-md hover:-translate-x-1 hover:-translate-y-1 active:translate-x-0 active:translate-y-0 active:shadow-none"
+        className="px-3 pt-1 pb-2 z-30 font-sans text-lg md:text-xl  bg-gradient-to-tr from-orange-400 to-orange-500 bg-orange-400 text-white font-bold w-fit mx-auto my-2 rounded-xl shadow-sm shadow-slate-700 hover:shadow-slate-700 hover:shadow-md hover:-translate-x-1 hover:-translate-y-1 active:translate-x-0 active:translate-y-0 active:shadow-none"
       >
         Сходить
       </button>
