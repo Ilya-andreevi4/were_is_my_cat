@@ -48,7 +48,7 @@ function GamePage() {
   }, []);
 
   return (
-    <div className="bg-white h-fit w-screen min-h-screen">
+    <div id="game-page" className="bg-white h-fit w-screen min-h-screen">
       <button
         className="absolute top-16 right-8"
         onClick={() => setInstructionOpen(true)}
@@ -73,7 +73,7 @@ function GamePage() {
             })}
           </div>
 
-          <div className="flex flex-col w-fit h-fit">
+          <div className="flex flex-col w-fit h-fit mt-8">
             <div className="grid grid-cols-1 gap-0 mx-auto justify-start h-fit w-fit ">
               <Dices />
             </div>
