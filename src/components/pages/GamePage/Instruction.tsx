@@ -15,27 +15,27 @@ const Instruction = () => {
       <SwiperSlide>
         <div className="grid grid-cols-1 gap-3 my-4 px-4 justify-center">
           <h1 className="text-xl">Инструкция к игре:</h1>
-          <div className="flex my-4">
-            <h2 className="flex-auto text-left px-4">
+          <div className="grid grid-cols-1 my-4">
+            <h2 className="flex-auto text-left px-2">
               Первый игрок, нажав на кнопку "Сходить", выбрасывает 3 кубика.
-              <br />
-              <br />
-              1. Кубик отвечает за позу кота
-              <br />
-              2. Кубик отвечает за цвет кота
-              <br />
-              3. Кубик отвечает за то, есть ли у кота пятна или полоски, или их
-              нет
-              <br />
-              <br />
-              <span className="text-md text left">
-                Если вам трудно разобрать, что означают выпавшие кубики, можно
-                нажать на кубики и выплывут подсказки.
-              </span>
             </h2>
-            <div className="flex-none bg-center relative h-80 w-40 mr-6 my-auto border-2 border-gray-400">
-              <img src="./instruction_2.png" alt="" className="" />
+            <div className="flex my-4">
+              <h2 className="flex-auto my-auto text-left">
+                Один кубик отвечает за позу кота
+                <br />
+                Второй кубик отвечает за цвет кота
+                <br />
+                Третий кубик отвечает за то, есть ли у кота пятна или полоски,
+                или их нет
+              </h2>
+              <div className="flex-none bg-center relative h-80 w-40 mr-6 my-auto">
+                <img src="./instruction_2.png" alt="" className="" />
+              </div>
             </div>
+            <h2 className="flex-auto text-left px-2">
+              Если вам трудно разобрать, что означают выпавшие кубики, можно
+              нажать на кубики и выплывут подсказки.
+            </h2>
           </div>
         </div>
       </SwiperSlide>
