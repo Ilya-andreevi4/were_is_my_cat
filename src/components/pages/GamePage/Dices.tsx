@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useActions } from "../../../services/hooks/actions";
 import { useAppSelector } from "../../../services/hooks/redux";
 import diceDescription from "./DiceDescription";
-import tippy, { hideAll } from "tippy.js";
+import tippy from "tippy.js";
 
 function Dices() {
   const { players, activeDices } = useAppSelector(
@@ -22,13 +22,13 @@ function Dices() {
       const popText = diceDescription(d);
       if (popText && dice) {
         const instanse = tippy(dice, {
-          theme: "light",
           content: popText,
+          theme: "material",
           placement: "left",
           role: "tooltip",
           arrow: true,
           duration: 200,
-          trigger: "click",
+          trigger: "hover",
         });
         instanse.destroy();
         instanse.unmount();
@@ -44,13 +44,13 @@ function Dices() {
         const popText = diceDescription(d);
         if (popText && dice) {
           const instanse = tippy(dice, {
-            theme: "light",
+            theme: "material",
             content: popText,
             placement: "left",
             role: "tooltip",
             arrow: true,
             duration: 200,
-            trigger: "focus",
+            trigger: "hover",
           });
           instanse.show();
         }
