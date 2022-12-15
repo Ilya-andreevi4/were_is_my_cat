@@ -1,4 +1,4 @@
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import GamePage from "./components/pages/GamePage/GamePage";
 import NotFound from "./components/pages/NotFound/NotFound";
 import StartPage from "./components/pages/StartPage/StartPage";
