@@ -5,10 +5,9 @@ function StartPage() {
     <>
       <img
         src="./ginger_cat.png"
-        alt="Settings"
+        alt=""
         className="absolute right-[8%] -mt-24 -top-6 w-60 z-0"
       />
-
       <div className="flex flex-col justify-between left-0 mx-auto my-auto p-11 top-[10%] h-[50%]">
         <h1 className="mx-auto mb-6 z-10 text-6xl tracking-tighter font-bold font-sans text-white">
           Где мой кот?
@@ -29,7 +28,7 @@ function StartPage() {
           className="z-0 absolute bottom-0 left-1 w-60"
         />
 
-        <div className="absolute bottom-5 font-mono text-sm text-center right-10 h-fit w-fit z-0">
+        <div className="absolute bottom-5 font-mono text-[18px] text-center right-10 h-fit w-fit z-0">
           By Orekhov Ilya
           <br />
           for AxiomaSchool
